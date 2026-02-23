@@ -56,12 +56,11 @@
     </section>
 
     <div class="grid">
-      <!-- Latest post card -->
       <div id="latest"></div>
 
-      <!-- Sidebar -->
       <aside class="sideCard">
         <h3>Quick links</h3>
+
         <div class="sideItem">
           <div class="kicker">Browse</div>
           <div class="small"><a href="blog.html"><b>All posts</b></a> — read older entries.</div>
@@ -79,7 +78,33 @@
       </aside>
     </div>
 
-    <footer>© <span id="year"></span> Daily Log</footer>
+    <footer class="siteFooter">
+      <div class="footerTop">
+        <div>
+          <div class="footerBrand">
+            <span class="footerLogo" aria-hidden="true"></span>
+            <div>
+              <div class="footerTitle">Daily Log</div>
+              <div class="footerDesc">
+                A day-by-day record of what I’m doing, building, and learning.
+                Clean timeline. Real progress.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footerLinks">
+          <a href="blog.html">All posts</a>
+          <a href="media.html">Media</a>
+          <a href="about.html">About</a>
+        </div>
+      </div>
+
+      <div class="footerBottom">
+        <div>© <span id="year"></span> <span class="maroon">Daily Log</span></div>
+        <div>Built on GitHub Pages • Maroon theme</div>
+      </div>
+    </footer>
   </div>
 
   <script>
@@ -89,23 +114,16 @@
   <script src="js/posts.js"></script>
   <script src="js/app.js"></script>
 
-  <!-- Small home-only enhancement: fill the hero stats from posts.js -->
   <script>
     (function(){
       if(!window.POSTS || !window.POSTS.length) return;
-
       const posts = [...window.POSTS].sort((a,b)=> new Date(b.date) - new Date(a.date));
       const latest = posts[0];
-
       const fmt = (iso) => new Date(iso + "T00:00:00").toLocaleDateString(undefined, { year:"numeric", month:"long", day:"numeric" });
 
-      const moodEl = document.getElementById("latestMood");
-      const dateEl = document.getElementById("latestDate");
-      const countEl = document.getElementById("postCount");
-
-      if(moodEl) moodEl.textContent = latest.mood || "—";
-      if(dateEl) dateEl.textContent = fmt(latest.date);
-      if(countEl) countEl.textContent = String(posts.length);
+      document.getElementById("latestMood").textContent = latest.mood || "—";
+      document.getElementById("latestDate").textContent = fmt(latest.date);
+      document.getElementById("postCount").textContent = String(posts.length);
     })();
   </script>
 </body>

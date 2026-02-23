@@ -69,7 +69,7 @@ a:hover{opacity:.95}
   letter-spacing:.2px;
 }
 
-/* Placeholder logo block (you’ll swap this later) */
+/* Placeholder logo block (swap later) */
 .logo{
   width:38px;
   height:38px;
@@ -121,7 +121,7 @@ a:hover{opacity:.95}
   opacity:.7;
 }
 
-/* ---------- HERO (HOME) ---------- */
+/* ---------- HERO ---------- */
 .hero{
   margin-top:20px;
   padding:32px 26px;
@@ -161,15 +161,10 @@ a:hover{opacity:.95}
   font-size:13px;
 }
 
-.hero .hint b{
-  color:var(--text);
-}
+.hero .hint b{color:var(--text)}
 
-/* Right side hero stats */
-.stats{
-  display:grid;
-  gap:10px;
-}
+/* ---------- STATS ---------- */
+.stats{display:grid; gap:10px}
 
 .statCard{
   border:1px solid var(--line);
@@ -189,7 +184,7 @@ a:hover{opacity:.95}
 .kicker{
   font-size:12px;
   color:var(--muted);
-  font-weight:700;
+  font-weight:800;
   text-transform:uppercase;
   letter-spacing:.08em;
 }
@@ -202,13 +197,13 @@ a:hover{opacity:.95}
   background: var(--brand-soft);
   color: var(--brand);
   font-size:12px;
-  font-weight:800;
+  font-weight:900;
 }
 
 .statValue{
   margin-top:10px;
   font-size:18px;
-  font-weight:800;
+  font-weight:900;
 }
 
 /* ---------- LAYOUT ---------- */
@@ -254,7 +249,7 @@ a:hover{opacity:.95}
   background: var(--brand-soft);
   color: var(--brand);
   font-size:12px;
-  font-weight:800;
+  font-weight:900;
 }
 
 hr.sep{
@@ -272,16 +267,13 @@ hr.sep{
   border-radius: 14px;
   background: var(--brand);
   color:#fff;
-  font-weight:800;
-  border: 1px solid rgba(0,0,0,0);
+  font-weight:900;
   box-shadow: 0 10px 18px rgba(122,31,42,.18);
 }
 
-.button:hover{
-  background: var(--brand-dark);
-}
+.button:hover{background: var(--brand-dark)}
 
-/* ---------- SIDEBAR (HOME) ---------- */
+/* ---------- SIDEBAR ---------- */
 .sideCard{
   padding:18px;
   background: var(--panel);
@@ -305,12 +297,141 @@ hr.sep{
 
 .sideItem:last-child{ margin-bottom:0; }
 
-.small{font-size:13px; color:var(--muted); line-height:1.6}
+.small{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.6;
+}
 
-/* ---------- FOOTER ---------- */
-footer{
+/* ---------- BLOG LIST ---------- */
+.list{display:grid; gap:12px}
+
+.post-item{
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  background: var(--panel-soft);
+}
+
+.post-item h3{margin:0 0 6px}
+.post-item .meta{margin-bottom:8px}
+
+/* ---------- MEDIA ---------- */
+.media-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+  gap:12px;
+  margin-top:18px;
+}
+
+.media-tile{
+  border-radius:var(--radius);
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:var(--panel);
+  box-shadow: var(--shadow-soft);
+}
+
+.media-tile img,
+.media-tile video{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  display:block;
+}
+
+.media-tile .cap{padding:12px}
+
+/* ---------- FOOTER (NICE) ---------- */
+.siteFooter{
   margin-top:26px;
-  text-align:center;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.9);
+  border-radius: calc(var(--radius) + 6px);
+  box-shadow: var(--shadow);
+  overflow:hidden;
+}
+
+.footerTop{
+  padding:18px 18px 14px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.footerBrand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.footerLogo{
+  width:34px;
+  height:34px;
+  border-radius:12px;
+  background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+  box-shadow: 0 10px 18px rgba(122,31,42,.18);
+  flex:0 0 auto;
+}
+
+.footerTitle{
+  font-weight:900;
+  letter-spacing:.2px;
+}
+
+.footerDesc{
+  margin-top:4px;
   color:var(--muted);
   font-size:13px;
+  line-height:1.5;
+  max-width: 54ch;
+}
+
+.footerLinks{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.footerLinks a{
+  padding:9px 12px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background: var(--panel-soft);
+  color: var(--muted);
+  font-weight:800;
+  font-size:13px;
+}
+
+.footerLinks a:hover{
+  background: var(--brand-soft);
+  color: var(--brand);
+  border-color: rgba(122,31,42,.18);
+}
+
+.footerBottom{
+  border-top:1px solid var(--line);
+  padding:12px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.footerBottom .maroon{
+  color: var(--brand);
+  font-weight:900;
+}
+
+@media (max-width: 720px){
+  .footerTop{flex-direction:column;}
+  .footerLinks{justify-content:flex-start;}
+  .footerBottom{
+    flex-direction:column;
+    align-items:flex-start;
+  }
 }
