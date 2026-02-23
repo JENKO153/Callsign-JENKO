@@ -629,3 +629,25 @@ a:hover{
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* ===== REAL LOGO STYLE ===== */
+.logoImg{
+  height: 40px;        /* main control */
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Slightly larger on desktop */
+@media (min-width: 900px){
+  .logoImg{
+    height: 44px; 
+    }
+}
+
+/* Smaller on mobile */
+@media (max-width: 600px){
+  .logoImg{
+    height: 34px;
+  }
+}
