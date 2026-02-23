@@ -1,25 +1,26 @@
 :root{
-  /* Core */
+  /* Base */
   --bg:#ffffff;
   --paper:#ffffff;
   --paper2:#fbfbfc;
-  --text:#101418;
-  --muted:#5b6673;
+  --text:#0f141a;
+  --muted:#566170;
 
   /* Maroon */
   --brand:#7a1f2a;
-  --brandDark:#611821;
+  --brandDark:#5f1720;
   --brandSoft:#f3e6e8;
 
-  /* Utility */
-  --line:#e6eaef;
-  --line2:#d8dee6;
-  --shadow: 0 10px 22px rgba(0,0,0,.06);
-  --shadowSoft: 0 6px 14px rgba(0,0,0,.05);
+  /* Lines & depth */
+  --line:#e6eaf0;
+  --line2:#d6dde6;
+  --shadow: 0 12px 24px rgba(0,0,0,.06);
+  --shadowSoft: 0 7px 16px rgba(0,0,0,.05);
+
   --radius: 14px;
   --max: 1120px;
 
-  /* Type */
+  /* Font: clean “military paperwork” vibe */
   --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
@@ -30,22 +31,21 @@ html,body{height:100%}
 body{
   margin:0;
   font-family:var(--font);
-  background:#ffffff; /* ✅ always white */
+  background:#ffffff; /* ✅ bottom stays white */
   color:var(--text);
 }
 
-/* White page + subtle “field” texture confined to pageWrap */
+/* Keep subtle texture only inside wrap */
 .pageWrap{
   min-height:100vh;
   background:
-    /* faint grid */
-    linear-gradient(to right, rgba(16,20,24,.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(16,20,24,.04) 1px, transparent 1px),
-    /* top vignette */
-    radial-gradient(900px 420px at 15% 0%, rgba(122,31,42,.08), transparent 60%),
+    radial-gradient(920px 420px at 12% 0%, rgba(122,31,42,.08), transparent 60%),
     radial-gradient(900px 420px at 110% 25%, rgba(122,31,42,.06), transparent 55%),
+    /* faint grid (VERY subtle) */
+    linear-gradient(to right, rgba(15,20,26,.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15,20,26,.035) 1px, transparent 1px),
     #ffffff;
-  background-size: 44px 44px, 44px 44px, auto, auto, auto;
+  background-size: auto, auto, 52px 52px, 52px 52px, auto;
 }
 
 a{color:inherit; text-decoration:none}
@@ -57,14 +57,16 @@ a:hover{opacity:.95}
   padding:26px 18px 44px;
 }
 
-/* ---------- NAV: Clean “header bar” ---------- */
+/* =========================
+   NAV / HEADER BAR
+   ========================= */
 .nav{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:12px;
-
   padding:14px 16px;
+
   border:1px solid var(--line2);
   background:rgba(255,255,255,.92);
   border-radius: var(--radius);
@@ -76,37 +78,40 @@ a:hover{opacity:.95}
   z-index:10;
 }
 
+/* Callsign brand area */
 .brand{
   display:flex;
   align-items:center;
   gap:12px;
-  font-weight:900;
-  letter-spacing:.08em;
+  font-weight:950;
+  letter-spacing:.10em;
   text-transform:uppercase;
 }
 
-/* “Insignia” placeholder: clean, military */
+.brand span{
+  font-size:13px;
+}
+
+/* Placeholder logo block (swap later) */
 .logo{
   width:38px;
   height:38px;
   border-radius: 10px;
-  background:
-    linear-gradient(135deg, var(--brand), var(--brandDark));
-  box-shadow: 0 10px 16px rgba(122,31,42,.18);
+  background: linear-gradient(135deg, var(--brand), var(--brandDark));
+  box-shadow: 0 10px 16px rgba(122,31,42,.16);
   position:relative;
 }
 
-/* small diagonal “rank stripe” detail */
 .logo::after{
   content:"";
   position:absolute;
   inset:10px;
   border-radius:7px;
-  border:1px solid rgba(255,255,255,.35);
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.18), transparent 55%);
+  border:1px solid rgba(255,255,255,.32);
+  background: linear-gradient(135deg, rgba(255,255,255,.18), transparent 55%);
 }
 
+/* Nav links */
 .links{
   display:flex;
   flex-wrap:wrap;
@@ -119,9 +124,9 @@ a:hover{opacity:.95}
   padding:9px 12px;
   border-radius: 10px;
   color:var(--muted);
-  font-weight:800;
+  font-weight:900;
   text-transform:uppercase;
-  letter-spacing:.06em;
+  letter-spacing:.08em;
   font-size:12px;
   border:1px solid transparent;
 }
@@ -150,10 +155,13 @@ a:hover{opacity:.95}
   opacity:.85;
 }
 
-/* ---------- HERO: SITREP style ---------- */
+/* =========================
+   HERO (BRIEFING PANEL)
+   ========================= */
 .hero{
   margin-top:18px;
   padding:22px 20px;
+
   background: var(--paper);
   border:1px solid var(--line2);
   border-radius: calc(var(--radius) + 4px);
@@ -165,9 +173,9 @@ a:hover{opacity:.95}
   align-items:stretch;
 }
 
-/* “Header strip” on the hero */
+/* Briefing strip */
 .hero::before{
-  content:"SITREP // DAILY LOG";
+  content:"DAILY SITREP // PERSONAL LOG";
   display:block;
   grid-column: 1 / -1;
   font-family: var(--mono);
@@ -176,6 +184,7 @@ a:hover{opacity:.95}
   text-transform:uppercase;
   color:var(--brand);
   padding:10px 12px;
+
   background: linear-gradient(90deg, rgba(122,31,42,.10), transparent 55%);
   border:1px solid rgba(122,31,42,.16);
   border-radius: 12px;
@@ -206,10 +215,11 @@ a:hover{opacity:.95}
   color: var(--muted);
   font-size:13px;
 }
-
 .hint b{color:var(--text)}
 
-/* ---------- STATS: “Status blocks” ---------- */
+/* =========================
+   STATS (STATUS BLOCKS)
+   ========================= */
 .stats{display:grid; gap:10px}
 
 .statCard{
@@ -231,7 +241,7 @@ a:hover{opacity:.95}
   font-family: var(--mono);
   font-size:12px;
   color:var(--muted);
-  font-weight:900;
+  font-weight:950;
   letter-spacing:.12em;
   text-transform:uppercase;
 }
@@ -244,8 +254,8 @@ a:hover{opacity:.95}
   background: var(--brandSoft);
   color: var(--brand);
   font-size:12px;
-  font-weight:900;
-  letter-spacing:.08em;
+  font-weight:950;
+  letter-spacing:.10em;
   text-transform:uppercase;
 }
 
@@ -255,19 +265,24 @@ a:hover{opacity:.95}
   font-size:18px;
 }
 
-/* ---------- LAYOUT ---------- */
+/* =========================
+   MAIN LAYOUT
+   ========================= */
 .grid{
   display:grid;
   grid-template-columns: 1fr 0.45fr;
   gap:16px;
   margin-top:16px;
 }
+
 @media (max-width: 980px){
   .hero{ grid-template-columns: 1fr; }
   .grid{ grid-template-columns: 1fr; }
 }
 
-/* ---------- CARDS: “ID panel” look ---------- */
+/* =========================
+   CARDS (ID PANEL STYLE)
+   ========================= */
 .card{
   padding:18px;
   background:var(--paper);
@@ -277,7 +292,7 @@ a:hover{opacity:.95}
   position:relative;
 }
 
-/* left maroon “service stripe” */
+/* Service stripe */
 .card::before{
   content:"";
   position:absolute;
@@ -303,7 +318,7 @@ a:hover{opacity:.95}
   gap:10px;
   flex-wrap:wrap;
   align-items:center;
-  letter-spacing:.06em;
+  letter-spacing:.08em;
   text-transform:uppercase;
 }
 
@@ -314,8 +329,8 @@ a:hover{opacity:.95}
   background: var(--brandSoft);
   color: var(--brand);
   font-size:12px;
-  font-weight:900;
-  letter-spacing:.06em;
+  font-weight:950;
+  letter-spacing:.08em;
   text-transform:uppercase;
 }
 
@@ -325,12 +340,14 @@ a:hover{opacity:.95}
   line-height:1.7;
 }
 
+/* Dashed “form” rule */
 hr.sep{
   border:0;
-  border-top:1px dashed var(--line2); /* military “form” vibe */
+  border-top:1px dashed var(--line2);
   margin:16px 0;
 }
 
+/* CTA button */
 .button{
   display:inline-flex;
   align-items:center;
@@ -340,16 +357,17 @@ hr.sep{
   border-radius: 12px;
   background: var(--brand);
   color:#fff;
-  font-weight:900;
-  letter-spacing:.06em;
+  font-weight:950;
+  letter-spacing:.10em;
   text-transform:uppercase;
   font-size:12px;
   box-shadow: 0 10px 16px rgba(122,31,42,.16);
 }
-
 .button:hover{background: var(--brandDark)}
 
-/* ---------- SIDEBAR ---------- */
+/* =========================
+   SIDEBAR
+   ========================= */
 .sideCard{
   padding:16px;
   background: var(--paper);
@@ -376,8 +394,11 @@ hr.sep{
 }
 .sideItem:last-child{margin-bottom:0;}
 
-/* ---------- LIST ---------- */
+/* =========================
+   BLOG LIST + MEDIA
+   ========================= */
 .list{display:grid; gap:12px}
+
 .post-item{
   padding:14px;
   border:1px solid var(--line2);
@@ -386,13 +407,13 @@ hr.sep{
 }
 .post-item h3{margin:0 0 6px}
 
-/* ---------- MEDIA ---------- */
 .media-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
   gap:12px;
   margin-top:18px;
 }
+
 .media-tile{
   border-radius: var(--radius);
   overflow:hidden;
@@ -408,7 +429,9 @@ hr.sep{
 }
 .media-tile .cap{padding:12px}
 
-/* ---------- FOOTER: “Report footer” ---------- */
+/* =========================
+   FOOTER (REPORT FOOTER)
+   ========================= */
 .siteFooter{
   margin-top:22px;
   border:1px solid var(--line2);
@@ -449,9 +472,9 @@ hr.sep{
 
 .footerTitle{
   font-weight:950;
-  letter-spacing:.08em;
+  letter-spacing:.10em;
   text-transform:uppercase;
-  font-size:13px;
+  font-size:12px;
 }
 
 .footerDesc{
@@ -475,9 +498,9 @@ hr.sep{
   border:1px solid var(--line);
   background: var(--paper2);
   color:var(--muted);
-  font-weight:900;
+  font-weight:950;
   font-size:12px;
-  letter-spacing:.08em;
+  letter-spacing:.10em;
   text-transform:uppercase;
 }
 
@@ -494,16 +517,17 @@ hr.sep{
   align-items:center;
   justify-content:space-between;
   gap:12px;
+
   color:var(--muted);
   font-size:12px;
   font-family: var(--mono);
-  letter-spacing:.08em;
+  letter-spacing:.10em;
   text-transform:uppercase;
 }
 
 .footerBottom .maroon{
   color:var(--brand);
-  font-weight:900;
+  font-weight:950;
 }
 
 @media (max-width: 720px){
