@@ -114,8 +114,8 @@ a:hover{opacity:.98}
 
 /* ✅ Logo sizing (slightly larger but controlled) */
 .logoImg{
-  height: 60px;
-  max-height: 60px;
+  height: 80px;
+  max-height: 80px;
   width: auto;
   display:block;
   object-fit: contain;
@@ -124,8 +124,8 @@ a:hover{opacity:.98}
 
 @media (max-width: 600px){
   .logoImg{
-    height: 80px;
-    max-height: 80px;
+    height: 60px;
+    max-height: 60px;
   }
 }
 
