@@ -1,23 +1,27 @@
 :root{
-  --bg:#f6f7f9;
-  --panel:#ffffff;
-  --panel-soft:#fbfbfc;
-  --text:#1f2933;
-  --muted:#6b7280;
+  /* Core */
+  --bg:#ffffff;
+  --paper:#ffffff;
+  --paper2:#fbfbfc;
+  --text:#101418;
+  --muted:#5b6673;
 
   /* Maroon */
   --brand:#7a1f2a;
-  --brand-dark:#651822;
-  --brand-soft:#f3e6e8;
+  --brandDark:#611821;
+  --brandSoft:#f3e6e8;
 
-  --line:#e5e7eb;
-  --shadow: 0 10px 25px rgba(0,0,0,.07);
-  --shadow-soft: 0 8px 18px rgba(0,0,0,.06);
-
-  --radius: 18px;
+  /* Utility */
+  --line:#e6eaef;
+  --line2:#d8dee6;
+  --shadow: 0 10px 22px rgba(0,0,0,.06);
+  --shadowSoft: 0 6px 14px rgba(0,0,0,.05);
+  --radius: 14px;
   --max: 1120px;
 
+  /* Type */
   --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 *{box-sizing:border-box}
@@ -26,11 +30,22 @@ html,body{height:100%}
 body{
   margin:0;
   font-family:var(--font);
-  background:
-    radial-gradient(1000px 500px at 10% 0%, rgba(122,31,42,.10), transparent 60%),
-    radial-gradient(900px 500px at 110% 30%, rgba(122,31,42,.08), transparent 55%),
-    var(--bg);
+  background:#ffffff; /* ✅ always white */
   color:var(--text);
+}
+
+/* White page + subtle “field” texture confined to pageWrap */
+.pageWrap{
+  min-height:100vh;
+  background:
+    /* faint grid */
+    linear-gradient(to right, rgba(16,20,24,.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16,20,24,.04) 1px, transparent 1px),
+    /* top vignette */
+    radial-gradient(900px 420px at 15% 0%, rgba(122,31,42,.08), transparent 60%),
+    radial-gradient(900px 420px at 110% 25%, rgba(122,31,42,.06), transparent 55%),
+    #ffffff;
+  background-size: 44px 44px, 44px 44px, auto, auto, auto;
 }
 
 a{color:inherit; text-decoration:none}
@@ -39,21 +54,21 @@ a:hover{opacity:.95}
 .container{
   max-width:var(--max);
   margin:0 auto;
-  padding:28px 18px 40px;
+  padding:26px 18px 44px;
 }
 
-/* ---------- NAV ---------- */
+/* ---------- NAV: Clean “header bar” ---------- */
 .nav{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:12px;
 
-  padding:14px 18px;
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.88);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
+  padding:14px 16px;
+  border:1px solid var(--line2);
+  background:rgba(255,255,255,.92);
+  border-radius: var(--radius);
+  box-shadow: var(--shadowSoft);
   backdrop-filter: blur(10px);
 
   position: sticky;
@@ -65,48 +80,62 @@ a:hover{opacity:.95}
   display:flex;
   align-items:center;
   gap:12px;
-  font-weight:800;
-  letter-spacing:.2px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
 }
 
-/* Placeholder logo block (swap later) */
+/* “Insignia” placeholder: clean, military */
 .logo{
   width:38px;
   height:38px;
-  border-radius:12px;
-  background: linear-gradient(135deg, var(--brand), var(--brand-dark));
-  box-shadow: 0 10px 18px rgba(122,31,42,.22);
-  flex:0 0 auto;
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, var(--brand), var(--brandDark));
+  box-shadow: 0 10px 16px rgba(122,31,42,.18);
+  position:relative;
 }
 
-.brand span{
-  font-size:18px;
+/* small diagonal “rank stripe” detail */
+.logo::after{
+  content:"";
+  position:absolute;
+  inset:10px;
+  border-radius:7px;
+  border:1px solid rgba(255,255,255,.35);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.18), transparent 55%);
 }
 
 .links{
   display:flex;
-  gap:8px;
   flex-wrap:wrap;
+  gap:8px;
   align-items:center;
 }
 
 .links a{
   position:relative;
   padding:9px 12px;
-  border-radius:12px;
+  border-radius: 10px;
   color:var(--muted);
-  font-weight:600;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  font-size:12px;
+  border:1px solid transparent;
 }
 
 .links a:hover{
-  background:var(--brand-soft);
   color:var(--brand);
+  background:var(--brandSoft);
+  border-color: rgba(122,31,42,.14);
 }
 
-/* Active nav underline highlight */
 .links a.active{
   color:var(--brand);
-  background:var(--brand-soft);
+  background:var(--brandSoft);
+  border-color: rgba(122,31,42,.18);
 }
 
 .links a.active::after{
@@ -118,60 +147,77 @@ a:hover{opacity:.95}
   height:2px;
   border-radius:2px;
   background:var(--brand);
-  opacity:.7;
+  opacity:.85;
 }
 
-/* ---------- HERO ---------- */
+/* ---------- HERO: SITREP style ---------- */
 .hero{
-  margin-top:20px;
-  padding:32px 26px;
-  background: var(--panel);
-  border:1px solid var(--line);
-  border-radius: calc(var(--radius) + 6px);
+  margin-top:18px;
+  padding:22px 20px;
+  background: var(--paper);
+  border:1px solid var(--line2);
+  border-radius: calc(var(--radius) + 4px);
   box-shadow: var(--shadow);
 
   display:grid;
-  grid-template-columns: 1.25fr 0.75fr;
-  gap:18px;
-  align-items:center;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap:14px;
+  align-items:stretch;
+}
+
+/* “Header strip” on the hero */
+.hero::before{
+  content:"SITREP // DAILY LOG";
+  display:block;
+  grid-column: 1 / -1;
+  font-family: var(--mono);
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--brand);
+  padding:10px 12px;
+  background: linear-gradient(90deg, rgba(122,31,42,.10), transparent 55%);
+  border:1px solid rgba(122,31,42,.16);
+  border-radius: 12px;
 }
 
 .hero h1{
-  margin:0 0 10px;
-  font-size: clamp(28px, 3.2vw, 44px);
-  line-height:1.06;
+  margin:0 0 8px;
+  font-size: clamp(28px, 3vw, 42px);
+  line-height:1.05;
+  letter-spacing:-.02em;
 }
 
 .hero p{
   margin:0 0 10px;
   color:var(--muted);
-  line-height:1.65;
-  max-width: 62ch;
+  line-height:1.7;
+  max-width: 64ch;
 }
 
-.hero .hint{
+.hint{
   display:inline-flex;
   gap:10px;
   align-items:center;
   padding:10px 12px;
-  border-radius:14px;
+  border-radius: 12px;
   border:1px solid var(--line);
-  background: var(--panel-soft);
+  background: var(--paper2);
   color: var(--muted);
   font-size:13px;
 }
 
-.hero .hint b{color:var(--text)}
+.hint b{color:var(--text)}
 
-/* ---------- STATS ---------- */
+/* ---------- STATS: “Status blocks” ---------- */
 .stats{display:grid; gap:10px}
 
 .statCard{
-  border:1px solid var(--line);
+  border:1px solid var(--line2);
   background: linear-gradient(180deg, #fff, #fbfbfc);
-  border-radius: 16px;
+  border-radius: 14px;
   padding:14px;
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--shadowSoft);
 }
 
 .statTop{
@@ -182,11 +228,12 @@ a:hover{opacity:.95}
 }
 
 .kicker{
+  font-family: var(--mono);
   font-size:12px;
   color:var(--muted);
-  font-weight:800;
+  font-weight:900;
+  letter-spacing:.12em;
   text-transform:uppercase;
-  letter-spacing:.08em;
 }
 
 .pill{
@@ -194,68 +241,94 @@ a:hover{opacity:.95}
   align-items:center;
   padding:6px 10px;
   border-radius:999px;
-  background: var(--brand-soft);
+  background: var(--brandSoft);
   color: var(--brand);
   font-size:12px;
   font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
 }
 
 .statValue{
   margin-top:10px;
+  font-weight:950;
   font-size:18px;
-  font-weight:900;
 }
 
 /* ---------- LAYOUT ---------- */
 .grid{
   display:grid;
   grid-template-columns: 1fr 0.45fr;
-  gap:18px;
-  margin-top:18px;
+  gap:16px;
+  margin-top:16px;
 }
-
 @media (max-width: 980px){
   .hero{ grid-template-columns: 1fr; }
   .grid{ grid-template-columns: 1fr; }
 }
 
-/* ---------- CARDS ---------- */
+/* ---------- CARDS: “ID panel” look ---------- */
 .card{
-  padding:22px;
-  background:var(--panel);
+  padding:18px;
+  background:var(--paper);
   border-radius: var(--radius);
-  border:1px solid var(--line);
+  border:1px solid var(--line2);
   box-shadow: var(--shadow);
+  position:relative;
+}
+
+/* left maroon “service stripe” */
+.card::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:12px;
+  bottom:12px;
+  width:4px;
+  border-radius: 999px;
+  background: var(--brand);
+  opacity:.9;
 }
 
 .card h2{
   margin:10px 0 10px;
-  font-size:22px;
+  font-size:20px;
 }
 
 .meta{
-  font-size:13px;
+  font-family: var(--mono);
+  font-size:12px;
   color:var(--muted);
   display:flex;
   gap:10px;
   flex-wrap:wrap;
   align-items:center;
+  letter-spacing:.06em;
+  text-transform:uppercase;
 }
 
 .tag{
   display:inline-block;
   padding:6px 10px;
   border-radius:999px;
-  background: var(--brand-soft);
+  background: var(--brandSoft);
   color: var(--brand);
   font-size:12px;
   font-weight:900;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+
+.small{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.7;
 }
 
 hr.sep{
   border:0;
-  border-top:1px solid var(--line);
-  margin:18px 0;
+  border-top:1px dashed var(--line2); /* military “form” vibe */
+  margin:16px 0;
 }
 
 .button{
@@ -263,58 +336,55 @@ hr.sep{
   align-items:center;
   gap:8px;
   margin-top:14px;
-  padding:11px 16px;
-  border-radius: 14px;
+  padding:11px 14px;
+  border-radius: 12px;
   background: var(--brand);
   color:#fff;
   font-weight:900;
-  box-shadow: 0 10px 18px rgba(122,31,42,.18);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  font-size:12px;
+  box-shadow: 0 10px 16px rgba(122,31,42,.16);
 }
 
-.button:hover{background: var(--brand-dark)}
+.button:hover{background: var(--brandDark)}
 
 /* ---------- SIDEBAR ---------- */
 .sideCard{
-  padding:18px;
-  background: var(--panel);
-  border:1px solid var(--line);
+  padding:16px;
+  background: var(--paper);
+  border:1px solid var(--line2);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
 
 .sideCard h3{
   margin:0 0 10px;
-  font-size:16px;
+  font-family: var(--mono);
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--brand);
 }
 
 .sideItem{
   padding:12px;
-  border-radius:14px;
+  border-radius: 12px;
   border:1px solid var(--line);
-  background: var(--panel-soft);
+  background: var(--paper2);
   margin-bottom:10px;
 }
+.sideItem:last-child{margin-bottom:0;}
 
-.sideItem:last-child{ margin-bottom:0; }
-
-.small{
-  font-size:13px;
-  color:var(--muted);
-  line-height:1.6;
-}
-
-/* ---------- BLOG LIST ---------- */
+/* ---------- LIST ---------- */
 .list{display:grid; gap:12px}
-
 .post-item{
-  padding:16px;
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  background: var(--panel-soft);
+  padding:14px;
+  border:1px solid var(--line2);
+  border-radius: var(--radius);
+  background: var(--paper2);
 }
-
 .post-item h3{margin:0 0 6px}
-.post-item .meta{margin-bottom:8px}
 
 /* ---------- MEDIA ---------- */
 .media-grid{
@@ -323,41 +393,45 @@ hr.sep{
   gap:12px;
   margin-top:18px;
 }
-
 .media-tile{
-  border-radius:var(--radius);
+  border-radius: var(--radius);
   overflow:hidden;
-  border:1px solid var(--line);
-  background:var(--panel);
-  box-shadow: var(--shadow-soft);
+  border:1px solid var(--line2);
+  background: var(--paper);
+  box-shadow: var(--shadowSoft);
 }
-
-.media-tile img,
-.media-tile video{
+.media-tile img, .media-tile video{
   width:100%;
   height:180px;
   object-fit:cover;
   display:block;
 }
-
 .media-tile .cap{padding:12px}
 
-/* ---------- FOOTER (NICE) ---------- */
+/* ---------- FOOTER: “Report footer” ---------- */
 .siteFooter{
-  margin-top:26px;
-  border:1px solid var(--line);
-  background: rgba(255,255,255,.9);
-  border-radius: calc(var(--radius) + 6px);
-  box-shadow: var(--shadow);
+  margin-top:22px;
+  border:1px solid var(--line2);
+  background: rgba(255,255,255,.92);
+  border-radius: calc(var(--radius) + 4px);
+  box-shadow: var(--shadowSoft);
   overflow:hidden;
 }
 
+.siteFooter::before{
+  content:"";
+  display:block;
+  height:4px;
+  background: linear-gradient(90deg, var(--brand), transparent 60%);
+  opacity:.85;
+}
+
 .footerTop{
-  padding:18px 18px 14px;
+  padding:16px 16px 12px;
   display:flex;
   align-items:flex-start;
   justify-content:space-between;
-  gap:18px;
+  gap:16px;
 }
 
 .footerBrand{
@@ -367,17 +441,17 @@ hr.sep{
 }
 
 .footerLogo{
-  width:34px;
-  height:34px;
-  border-radius:12px;
-  background: linear-gradient(135deg, var(--brand), var(--brand-dark));
-  box-shadow: 0 10px 18px rgba(122,31,42,.18);
-  flex:0 0 auto;
+  width:32px;
+  height:32px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--brand), var(--brandDark));
 }
 
 .footerTitle{
-  font-weight:900;
-  letter-spacing:.2px;
+  font-weight:950;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  font-size:13px;
 }
 
 .footerDesc{
@@ -385,7 +459,7 @@ hr.sep{
   color:var(--muted);
   font-size:13px;
   line-height:1.5;
-  max-width: 54ch;
+  max-width: 56ch;
 }
 
 .footerLinks{
@@ -397,33 +471,38 @@ hr.sep{
 
 .footerLinks a{
   padding:9px 12px;
-  border-radius:12px;
+  border-radius: 12px;
   border:1px solid var(--line);
-  background: var(--panel-soft);
-  color: var(--muted);
-  font-weight:800;
-  font-size:13px;
+  background: var(--paper2);
+  color:var(--muted);
+  font-weight:900;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
 }
 
 .footerLinks a:hover{
-  background: var(--brand-soft);
+  background: var(--brandSoft);
   color: var(--brand);
-  border-color: rgba(122,31,42,.18);
+  border-color: rgba(122,31,42,.16);
 }
 
 .footerBottom{
-  border-top:1px solid var(--line);
-  padding:12px 18px;
+  border-top:1px solid var(--line2);
+  padding:12px 16px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:12px;
   color:var(--muted);
-  font-size:13px;
+  font-size:12px;
+  font-family: var(--mono);
+  letter-spacing:.08em;
+  text-transform:uppercase;
 }
 
 .footerBottom .maroon{
-  color: var(--brand);
+  color:var(--brand);
   font-weight:900;
 }
 
