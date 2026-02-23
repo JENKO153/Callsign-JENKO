@@ -219,6 +219,7 @@ a:hover{opacity:.98}
   border-radius: calc(var(--radius) + 2px);
   box-shadow: var(--shadowSoft);
   padding:22px;
+  padding-top: 15px;
   position:relative;
 }
 
