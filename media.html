@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daily Log — Media</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <a class="brand" href="index.html">
+        <span class="logo" aria-hidden="true"></span>
+        <span>Daily Log</span>
+      </a>
+
+      <div class="links">
+        <a data-nav href="index.html">Home</a>
+        <a data-nav href="blog.html">Blog</a>
+        <a data-nav href="media.html">Media</a>
+        <a data-nav href="about.html">About</a>
+      </div>
+    </nav>
+
+    <section class="hero" style="grid-template-columns:1fr;">
+      <div>
+        <h1>Featured media</h1>
+        <p>Photos and videos that appear inside posts.</p>
+      </div>
+    </section>
+
+    <div id="mediaGrid" class="media-grid"></div>
+
+    <footer class="siteFooter">
+      <div class="footerTop">
+        <div>
+          <div class="footerBrand">
+            <span class="footerLogo" aria-hidden="true"></span>
+            <div>
+              <div class="footerTitle">Daily Log</div>
+              <div class="footerDesc">Everything visual from the timeline in one place.</div>
+            </div>
+          </div>
+        </div>
+        <div class="footerLinks">
+          <a href="index.html">Home</a>
+          <a href="blog.html">All posts</a>
+          <a href="about.html">About</a>
+        </div>
+      </div>
+
+      <div class="footerBottom">
+        <div>© <span id="year"></span> <span class="maroon">Daily Log</span></div>
+        <div>Built on GitHub Pages</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+  <script src="js/posts.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
