@@ -19,23 +19,7 @@ window.POSTS = [
       </ul>
     `,
     featuredMedia: [
-      { type: "image", src: "assets/media/sample-1.jpg", caption: "A photo from today (placeholder)." },
-      { type: "video", src: "assets/media/sample-clip.mp4", caption: "A short clip (placeholder)." }
-    ]
-  },
-  {
-    id: "2026-02-22-training-day",
-    title: "Training Day — Small Wins Add Up",
-    date: "2026-02-22",
-    mood: "Motivated",
-    tags: ["training", "mindset"],
-    summary: "Kept it simple today. Training, effort, and keeping momentum.",
-    content: `
-      <p>Nothing crazy — just a proper day done properly.</p>
-      <p>I’m trying to build a rhythm where consistency is the win.</p>
-    `,
-    featuredMedia: [
-      { type: "image", src: "assets/media/sample-2.jpg", caption: "Progress shot (placeholder)." }
+      { type: "image", src: "assets/media/sample-1.jpg", caption: "A photo from today (placeholder)." }
     ]
   }
 ];

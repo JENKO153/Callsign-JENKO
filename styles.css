@@ -50,7 +50,7 @@ body{
 }
 
 a{color:inherit; text-decoration:none}
-a:hover{opacity:.95}
+a:hover{opacity:.98}
 
 .container{
   max-width:var(--max);
@@ -210,7 +210,7 @@ a:hover{opacity:.95}
   position:relative;
 }
 
-/* service stripe */
+/* service stripe (ONLY on hover) */
 .card::before{
   content:"";
   position:absolute;
@@ -220,7 +220,14 @@ a:hover{opacity:.95}
   width:4px;
   border-radius:999px;
   background: var(--brand);
-  opacity:.9;
+  opacity:0;                 /* hidden default */
+  transform: translateX(-2px);
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.card:hover::before{
+  opacity:.95;
+  transform: translateX(0);
 }
 
 .meta{
@@ -567,4 +574,49 @@ h1,h2,h3{margin:0}
   .footerTop{ flex-direction:column; }
   .footerLinks{ justify-content:flex-start; }
   .footerBottom{ flex-direction:column; align-items:flex-start; }
+}
+
+/* =========================
+   GLOBAL HOVER FEEL (EVERYWHERE)
+   ========================= */
+.card,
+.post-item,
+.sideItem,
+.media-tile,
+.footerLinks a,
+.links a{
+  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease, background .16s ease, color .16s ease;
+}
+
+/* Cards + snippets + tiles lift on hover */
+.card:hover,
+.post-item:hover,
+.sideItem:hover,
+.media-tile:hover{
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: rgba(122,31,42,.20);
+}
+
+/* Post snippet feels interactive */
+.post-item:hover{
+  background:#ffffff;
+}
+
+/* Media a tad stronger */
+.media-tile:hover{
+  box-shadow: 0 16px 28px rgba(0,0,0,.08);
+}
+
+/* Links: consistent maroon hover */
+a:hover{
+  color: var(--brand);
+}
+
+/* Inline links in text: underline hover */
+.card a:hover,
+.post-item a:hover,
+.small a:hover{
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }

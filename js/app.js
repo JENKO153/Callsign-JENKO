@@ -27,7 +27,7 @@ function renderLatest(){
   const latest = posts[0];
 
   if(!latest){
-    el.innerHTML = `<div class="card"><p>No posts yet. Add one in <b>js/posts.js</b>.</p></div>`;
+    el.innerHTML = `<div class="card"><p class="small">No logs yet. Add one in <b>js/posts.js</b>.</p></div>`;
     return;
   }
 
@@ -41,12 +41,13 @@ function renderLatest(){
         <span>${latest.tags.map(t=>`<span class="tag">#${t}</span>`).join(" ")}</span>
       </div>
 
-      <h2>${latest.title}</h2>
+      <h2 class="h2">${latest.title}</h2>
       <p class="small" style="margin:0">${latest.summary}</p>
 
-      <a class="button" href="post.html?id=${encodeURIComponent(latest.id)}">
-        Read latest post →
-      </a>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="button" href="blog.html">Read more →</a>
+        <a class="buttonGhost" href="post.html?id=${encodeURIComponent(latest.id)}">Open entry</a>
+      </div>
     </div>
   `;
 }
@@ -58,7 +59,7 @@ function renderBlogList(){
   const posts = getSortedPosts();
 
   if(posts.length === 0){
-    el.innerHTML = `<div class="post-item"><p>No posts yet. Add one in <b>js/posts.js</b>.</p></div>`;
+    el.innerHTML = `<div class="post-item"><p class="small">No logs yet. Add one in <b>js/posts.js</b>.</p></div>`;
     return;
   }
 
@@ -91,7 +92,7 @@ function renderSinglePost(){
   const post = window.POSTS.find(p=>p.id === id) || posts[0];
 
   if(!post){
-    el.innerHTML = `<div class="card"><p>Post not found.</p></div>`;
+    el.innerHTML = `<div class="card"><p class="small">Post not found.</p></div>`;
     return;
   }
 
@@ -113,14 +114,14 @@ function renderSinglePost(){
   }).join("");
 
   el.innerHTML = `
-    <div class="card" style="margin-top:18px">
+    <div class="card" style="margin-top:16px">
       <div class="meta">
         <span>${fmtDate(post.date)}</span>
         <span>•</span>
         <span>Mood: ${post.mood}</span>
       </div>
 
-      <h1 style="margin:10px 0 8px; font-size:34px; line-height:1.1">${post.title}</h1>
+      <h1 class="h1" style="margin-top:10px">${post.title}</h1>
 
       <div style="margin-top:10px">
         ${post.tags.map(t=>`<span class="tag">#${t}</span>`).join(" ")}
@@ -132,7 +133,7 @@ function renderSinglePost(){
 
       ${media ? `
         <hr class="sep">
-        <h2 style="margin:0 0 10px">Featured Media</h2>
+        <h2 class="h2" style="margin:0 0 10px">Featured Media</h2>
         <div class="media-grid">${media}</div>
       ` : ""}
     </div>
@@ -151,7 +152,7 @@ function renderMediaGallery(){
   });
 
   if(items.length === 0){
-    el.innerHTML = `<div class="card" style="margin-top:18px"><p>No media yet. Add images/videos to your posts.</p></div>`;
+    el.innerHTML = `<div class="card" style="margin-top:16px"><p class="small">No media yet. Add images/videos to your posts.</p></div>`;
     return;
   }
 
