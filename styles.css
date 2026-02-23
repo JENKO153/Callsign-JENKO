@@ -629,3 +629,28 @@ a:hover{
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* ====== HARD FIX: stop the banner from sticking/overlapping ====== */
+
+/* Ensure ONLY the nav is sticky */
+.header{
+  position: static !important;
+}
+
+/* Banner must scroll like normal content */
+.topStrip{
+  position: static !important;
+}
+
+/* Keep nav sticky, and ensure it sits above everything cleanly */
+.nav{
+  position: sticky !important;
+  top: 14px;
+  z-index: 999 !important;
+}
+
+/* IMPORTANT: Make the banner background OPAQUE so it never looks “see-through” */
+.topStrip{
+  background: linear-gradient(90deg, var(--brandSoft), #ffffff 70%) !important;
+  border: 1px solid rgba(122,31,42,.16) !important;
+}
