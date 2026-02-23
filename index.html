@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daily Log — Home</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <a class="brand" href="index.html">
+        <span class="badge">✦</span>
+        <span>Daily Log</span>
+      </a>
+      <div class="links">
+        <a data-nav href="index.html">Home</a>
+        <a data-nav href="blog.html">Blog</a>
+        <a data-nav href="media.html">Media</a>
+        <a data-nav href="about.html">About</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <h1>What I did today.</h1>
+      <p>A living timeline of my days — what I’m building, learning, training, and chasing.</p>
+      <p class="small">Tip: add new posts in <b>js/posts.js</b> and push to GitHub.</p>
+    </section>
+
+    <div id="latest"></div>
+
+    <footer>© <span id="year"></span> Daily Log</footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+  <script src="js/posts.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
