@@ -178,20 +178,19 @@ a:hover{opacity:.98}
    TOP STRIP (STICKY UNDER NAV)
    ========================= */
 .topStrip{
-  position: sticky;
-  top: calc(var(--sticky-gap) + var(--nav-sticky-height) + 10px);
-  z-index: 998;
+  position: static;          /* ✅ scrolls with the page */
+  z-index: auto;
 
   margin-top:14px;
-  margin-bottom:26px; /* ✅ more air before hero panel */
-  padding:14px 18px;  /* ✅ better internal padding */
+  margin-bottom:26px;
+  padding:14px 18px;
 
   border-radius: 12px;
   border:1px solid rgba(122,31,42,.16);
 
-  background: rgba(243,230,232,.96);
+  /* keep the nice semi-transparent look since it scrolls now */
+  background: rgba(243,230,232,.75);
   backdrop-filter: blur(10px);
-  box-shadow: 0 10px 18px rgba(0,0,0,.05);
 
   color:var(--brand);
   font-family: var(--mono);
