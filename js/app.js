@@ -4,7 +4,7 @@ function byDateDesc(a, b){
 }
 
 function getSortedPosts(){
-  return [...window.POSTS].sort(byDateDesc);
+  return [...(window.POSTS || [])].sort(byDateDesc);
 }
 
 function fmtDate(iso){
@@ -36,13 +36,13 @@ function renderLatest(){
       <div class="meta">
         <span>${fmtDate(latest.date)}</span>
         <span>•</span>
-        <span>Mood: ${latest.mood}</span>
+        <span>Mood: ${latest.mood || "—"}</span>
         <span>•</span>
-        <span>${latest.tags.map(t=>`<span class="tag">#${t}</span>`).join(" ")}</span>
+        <span>${(latest.tags || []).map(t=>`<span class="tag">#${t}</span>`).join(" ")}</span>
       </div>
 
       <h2 class="h2">${latest.title}</h2>
-      <p class="small" style="margin:0">${latest.summary}</p>
+      <p class="small" style="margin:0">${latest.summary || ""}</p>
 
       <div style="display:flex; gap:10px; flex-wrap:wrap;">
         <a class="button" href="blog.html">Read more →</a>
@@ -68,14 +68,14 @@ function renderBlogList(){
       <div class="meta">
         <span>${fmtDate(p.date)}</span>
         <span>•</span>
-        <span>Mood: ${p.mood}</span>
+        <span>Mood: ${p.mood || "—"}</span>
       </div>
 
       <h3><a href="post.html?id=${encodeURIComponent(p.id)}">${p.title}</a></h3>
-      <p class="small" style="margin:0 0 10px">${p.summary}</p>
+      <p class="small" style="margin:0 0 10px">${p.summary || ""}</p>
 
       <div>
-        ${p.tags.map(t=>`<span class="tag">#${t}</span>`).join(" ")}
+        ${(p.tags || []).map(t=>`<span class="tag">#${t}</span>`).join(" ")}
       </div>
     </div>
   `).join("");
@@ -89,7 +89,7 @@ function renderSinglePost(){
   const id = params.get("id");
 
   const posts = getSortedPosts();
-  const post = window.POSTS.find(p=>p.id === id) || posts[0];
+  const post = (window.POSTS || []).find(p=>p.id === id) || posts[0];
 
   if(!post){
     el.innerHTML = `<div class="card"><p class="small">Post not found.</p></div>`;
@@ -118,18 +118,18 @@ function renderSinglePost(){
       <div class="meta">
         <span>${fmtDate(post.date)}</span>
         <span>•</span>
-        <span>Mood: ${post.mood}</span>
+        <span>Mood: ${post.mood || "—"}</span>
       </div>
 
       <h1 class="h1" style="margin-top:10px">${post.title}</h1>
 
       <div style="margin-top:10px">
-        ${post.tags.map(t=>`<span class="tag">#${t}</span>`).join(" ")}
+        ${(post.tags || []).map(t=>`<span class="tag">#${t}</span>`).join(" ")}
       </div>
 
       <hr class="sep">
 
-      <div>${post.content}</div>
+      <div>${post.content || ""}</div>
 
       ${media ? `
         <hr class="sep">

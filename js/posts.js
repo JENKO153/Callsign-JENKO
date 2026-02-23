@@ -19,7 +19,7 @@ window.POSTS = [
       </ul>
     `,
     featuredMedia: [
-      { type: "image", src: "assets/media/sample-1.jpg", caption: "A photo from today (placeholder)." }
+      { type: "image", src: "images/sample-1.jpg", caption: "A photo from today (placeholder)." }
     ]
   }
 ];

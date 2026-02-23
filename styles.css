@@ -28,7 +28,7 @@
 
   /* Sticky layout tuning */
   --sticky-gap: 14px;
-  --nav-sticky-height: 74px; /* adjust if your nav height changes */
+  --nav-sticky-height: 88px; /* ✅ tuned for slightly larger logo/nav */
 }
 
 *{box-sizing:border-box}
@@ -37,7 +37,7 @@ html,body{height:100%}
 body{
   margin:0;
   font-family:var(--font);
-  background:#ffffff; /* ✅ bottom stays white */
+  background:#ffffff;
   color:var(--text);
   line-height:1.65;
 }
@@ -66,7 +66,7 @@ a:hover{opacity:.98}
    HEADER / NAV
    ========================= */
 .header{
-  position: static;  /* header itself not sticky */
+  position: static;
   margin-bottom: 12px;
 }
 
@@ -88,7 +88,7 @@ a:hover{opacity:.98}
   backdrop-filter: blur(10px);
 }
 
-/* callsign brand */
+/* Brand */
 .brand{
   display:flex;
   align-items:center;
@@ -113,10 +113,10 @@ a:hover{opacity:.98}
   letter-spacing:.12em;
 }
 
-/* ✅ Real logo image sizing (fixes massive logo) */
+/* ✅ Logo sizing (slightly larger) */
 .logoImg{
-  height: 80px;
-  max-height: 80px;
+  height: 54px;
+  max-height: 54px;
   width: auto;
   display:block;
   object-fit: contain;
@@ -125,12 +125,12 @@ a:hover{opacity:.98}
 
 @media (max-width: 600px){
   .logoImg{
-    height: 80px;
-    max-height: 80px;
+    height: 42px;
+    max-height: 42px;
   }
 }
 
-/* nav links */
+/* Nav links */
 .links{
   display:flex;
   flex-wrap:wrap;
@@ -183,13 +183,12 @@ a:hover{opacity:.98}
   z-index: 998;
 
   margin-top:14px;
-  margin-bottom:24px;
-  padding:14px 16px;
+  margin-bottom:26px; /* ✅ more air before hero panel */
+  padding:14px 18px;  /* ✅ better internal padding */
 
   border-radius: 12px;
   border:1px solid rgba(122,31,42,.16);
 
-  /* opaque enough to avoid ugly see-through */
   background: rgba(243,230,232,.96);
   backdrop-filter: blur(10px);
   box-shadow: 0 10px 18px rgba(0,0,0,.05);
@@ -219,7 +218,6 @@ a:hover{opacity:.98}
   border-radius: calc(var(--radius) + 2px);
   box-shadow: var(--shadowSoft);
   padding:22px;
-  padding-top: 15px;
   position:relative;
 }
 
@@ -582,7 +580,7 @@ h1,h2,h3{margin:0}
   .container{ padding:26px 16px 54px; }
   .heroGrid{ grid-template-columns: 1fr; }
   .homeGrid{ grid-template-columns: 1fr; }
-  :root{ --nav-sticky-height: 78px; } /* slightly different height on wrap */
+  :root{ --nav-sticky-height: 104px; } /* wrap can increase nav height */
 }
 
 @media (max-width: 720px){
@@ -595,7 +593,7 @@ h1,h2,h3{margin:0}
   .footerLinks{ justify-content:flex-start; }
   .footerBottom{ flex-direction:column; align-items:flex-start; }
 
-  :root{ --nav-sticky-height: 84px; } /* more wrap = taller */
+  :root{ --nav-sticky-height: 112px; }
 }
 
 /* =========================
