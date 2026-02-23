@@ -62,19 +62,22 @@ a:hover{opacity:.98}
    HEADER / NAV
    ========================= */
 .header{
-  position: sticky;
-  top: 14px;
+  position: relative;   /* ✅ not sticky */
   z-index: 10;
-  margin-bottom: 20px; /* ✅ more gap after header */
+  margin-bottom: 20px;
 }
 
 .nav{
+  position: sticky;     /* ✅ sticky nav only */
+  top: 14px;
+  z-index: 20;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:14px;
 
-  padding:16px 18px; /* ✅ more breathing room */
+  padding:16px 18px;
   border:1px solid var(--line2);
   background:rgba(255,255,255,.92);
   border-radius: var(--radius);
