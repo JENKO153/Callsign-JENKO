@@ -3,108 +3,105 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Daily Log — Home</title>
+  <title>Callsign: JENKO — Home</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="container">
-    <nav class="nav">
-      <a class="brand" href="index.html">
-        <span class="logo" aria-hidden="true"></span>
-        <span>Daily Log</span>
-      </a>
+  <div class="pageWrap">
+    <div class="container">
 
-      <div class="links">
-        <a data-nav href="index.html">Home</a>
-        <a data-nav href="blog.html">Blog</a>
-        <a data-nav href="media.html">Media</a>
-        <a data-nav href="about.html">About</a>
-      </div>
-    </nav>
+      <nav class="nav">
+        <a class="brand" href="index.html">
+          <span class="logo" aria-hidden="true"></span>
+          <span>Callsign: JENKO</span>
+        </a>
 
-    <section class="hero">
-      <div>
-        <h1>What I did today.</h1>
-        <p>
-          A clean timeline of my days — what I’m building, learning, training, and chasing.
-          No fluff. Just progress.
-        </p>
-
-        <div class="hint">
-          <span class="pill">Tip</span>
-          <span>Add new posts in <b>js/posts.js</b> and push to GitHub.</span>
+        <div class="links">
+          <a data-nav href="index.html">Home</a>
+          <a data-nav href="blog.html">Blog</a>
+          <a data-nav href="media.html">Media</a>
+          <a data-nav href="about.html">About</a>
         </div>
-      </div>
+      </nav>
 
-      <div class="stats">
-        <div class="statCard">
-          <div class="statTop">
-            <div class="kicker">Latest mood</div>
-            <div class="pill" id="latestMood">—</div>
-          </div>
-          <div class="statValue" id="latestDate">—</div>
-        </div>
-
-        <div class="statCard">
-          <div class="statTop">
-            <div class="kicker">Total posts</div>
-            <div class="pill" id="postCount">0</div>
-          </div>
-          <div class="statValue">Keeping the streak alive.</div>
-        </div>
-      </div>
-    </section>
-
-    <div class="grid">
-      <div id="latest"></div>
-
-      <aside class="sideCard">
-        <h3>Quick links</h3>
-
-        <div class="sideItem">
-          <div class="kicker">Browse</div>
-          <div class="small"><a href="blog.html"><b>All posts</b></a> — read older entries.</div>
-        </div>
-
-        <div class="sideItem">
-          <div class="kicker">Gallery</div>
-          <div class="small"><a href="media.html"><b>Featured media</b></a> — photos & videos from posts.</div>
-        </div>
-
-        <div class="sideItem">
-          <div class="kicker">About</div>
-          <div class="small"><a href="about.html"><b>Who I am</b></a> — what this blog is for.</div>
-        </div>
-      </aside>
-    </div>
-
-    <footer class="siteFooter">
-      <div class="footerTop">
+      <section class="hero">
         <div>
-          <div class="footerBrand">
-            <span class="footerLogo" aria-hidden="true"></span>
-            <div>
-              <div class="footerTitle">Daily Log</div>
-              <div class="footerDesc">
-                A day-by-day record of what I’m doing, building, and learning.
-                Clean timeline. Real progress.
+          <h1>What I did today.</h1>
+          <p>A clean timeline of my days — what I’m building, learning, training, and chasing.</p>
+          <div class="hint">
+            <span class="pill">Tip</span>
+            <span>Add new posts in <b>js/posts.js</b> and push to GitHub.</span>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="statCard">
+            <div class="statTop">
+              <div class="kicker">Latest mission</div>
+              <div class="pill" id="latestMood">—</div>
+            </div>
+            <div class="statValue" id="latestDate">—</div>
+          </div>
+
+          <div class="statCard">
+            <div class="statTop">
+              <div class="kicker">Total posts</div>
+              <div class="pill" id="postCount">0</div>
+            </div>
+            <div class="statValue">Keeping the streak alive.</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="grid">
+        <div id="latest"></div>
+
+        <aside class="sideCard">
+          <h3>Quick links</h3>
+
+          <div class="sideItem">
+            <div class="kicker">Browse</div>
+            <div class="small"><a href="blog.html"><b>All posts</b></a> — read older entries.</div>
+          </div>
+
+          <div class="sideItem">
+            <div class="kicker">Gallery</div>
+            <div class="small"><a href="media.html"><b>Featured media</b></a> — photos & videos from posts.</div>
+          </div>
+
+          <div class="sideItem">
+            <div class="kicker">About</div>
+            <div class="small"><a href="about.html"><b>Who I am</b></a></div>
+          </div>
+        </aside>
+      </div>
+
+      <footer class="siteFooter">
+        <div class="footerTop">
+          <div>
+            <div class="footerBrand">
+              <span class="footerLogo"></span>
+              <div>
+                <div class="footerTitle">Daily Log</div>
+                <div class="footerDesc">A day-by-day record of progress and life.</div>
               </div>
             </div>
           </div>
+
+          <div class="footerLinks">
+            <a href="blog.html">All posts</a>
+            <a href="media.html">Media</a>
+            <a href="about.html">About</a>
+          </div>
         </div>
 
-        <div class="footerLinks">
-          <a href="blog.html">All posts</a>
-          <a href="media.html">Media</a>
-          <a href="about.html">About</a>
+        <div class="footerBottom">
+          <div>© <span id="year"></span> <span class="maroon">Daily Log</span></div>
+          <div>Built on Chronic Caffeine Addiction</div>
         </div>
-      </div>
+      </footer>
 
-      <div class="footerBottom">
-        <div>© <span id="year"></span> <span class="maroon">Daily Log</span></div>
-        <div>Built on GitHub Pages • Maroon theme</div>
-      </div>
-    </footer>
+    </div>
   </div>
 
   <script>
