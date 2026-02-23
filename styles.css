@@ -68,9 +68,9 @@ a:hover{opacity:.98}
 }
 
 .nav{
-  position: sticky;     /* ✅ sticky nav only */
+  position: sticky;
   top: 14px;
-  z-index: 20;
+  z-index: 20;   /* stays above everything */
 
   display:flex;
   align-items:center;
@@ -178,8 +178,9 @@ a:hover{opacity:.98}
    PAGE TOP STRIP
    ========================= */
 .topStrip{
+  position: relative;          /* ✅ ensures it scrolls normally */
   margin-top:12px;
-  padding:12px 14px; /* ✅ more padding */
+  padding:12px 14px;
   border-radius: 12px;
   border:1px solid rgba(122,31,42,.16);
   background: linear-gradient(90deg, rgba(122,31,42,.10), transparent 55%);
@@ -188,6 +189,7 @@ a:hover{opacity:.98}
   font-size:12px;
   letter-spacing:.14em;
   text-transform:uppercase;
+  z-index: 1;                  /* ✅ below nav */
 }
 
 /* =========================
