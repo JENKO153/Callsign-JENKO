@@ -588,3 +588,27 @@ a:hover{ color: var(--brand); }
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* ===== Lock nav height so it never grows ===== */
+.nav{
+  height: 70px !important;       /* adjust if you want slightly taller/shorter */
+  padding: 0 18px !important;    /* remove vertical padding so height is controlled */
+  display:flex !important;
+  align-items:center !important;
+  overflow: visible !important;  /* allows logo to overflow if bigger */
+}
+
+/* ===== Make logo visually bigger without resizing nav ===== */
+.nav .brand{
+  height: 100%;
+  display:flex;
+  align-items:center;
+}
+
+.nav .brand img,
+.logoImg{
+  height: 100px !important;       /* bigger than nav height = nice overflow */
+  width: auto !important;
+  object-fit: contain;
+  transform: translateY(4px);    /* optional micro-adjust for vertical centering */
+}
