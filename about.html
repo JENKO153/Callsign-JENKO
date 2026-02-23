@@ -3,48 +3,88 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Daily Log — About</title>
+  <title>Callsign: JENKO — About</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="pageWrap">
     <div class="container">
 
-      <nav class="nav">
-        <a class="brand" href="index.html">
-          <span class="logo"></span>
-          <span>Daily Log</span>
-        </a>
+      <header class="header">
+        <nav class="nav">
+          <a class="brand" href="index.html">
+            <span class="logo" aria-hidden="true"></span>
+            <span class="brandText">
+              <span class="brandTitle">Callsign: JENKO</span>
+              <span class="brandSub">DAILY LOG // SITREP</span>
+            </span>
+          </a>
 
-        <div class="links">
-          <a data-nav href="index.html">Home</a>
-          <a data-nav href="blog.html">Blog</a>
-          <a data-nav href="media.html">Media</a>
-          <a data-nav href="about.html">About</a>
-        </div>
-      </nav>
+          <div class="links">
+            <a data-nav href="index.html">Home</a>
+            <a data-nav href="blog.html">Logs</a>
+            <a data-nav href="media.html">Media</a>
+            <a data-nav href="about.html">About</a>
+          </div>
+        </nav>
 
-      <section class="hero" style="grid-template-columns:1fr;">
-        <div>
-          <h1>About me</h1>
-          <p>This is my daily timeline and progress log.</p>
-        </div>
+        <div class="topStrip">ABOUT // PROFILE</div>
+      </header>
+
+      <section class="panel panelPad">
+        <div class="h3">Identity</div>
+        <h1 class="h1" style="margin-top:10px;">About Me</h1>
+        <p style="margin-top:10px; color:var(--muted); line-height:1.7;">
+          This site is my daily log — what I’m doing, what I’m building, and what I’m learning.
+        </p>
       </section>
 
-      <div class="card" style="margin-top:18px">
-        <p class="small">Replace with your own story.</p>
+      <div class="card" style="margin-top:16px;">
+        <div class="h3">Bio</div>
+        <hr class="sep">
+        <p class="small">
+          Replace this with your story. Keep it real. Keep it simple. This is your long-term timeline.
+        </p>
+
+        <hr class="sep">
+
+        <div class="h3">What you’ll find here</div>
+        <ul class="small" style="margin-top:10px;">
+          <li>Daily SITREPs (wins, lessons, what I worked on)</li>
+          <li>Featured photos and videos</li>
+          <li>Longer “after action” posts when something matters</li>
+        </ul>
       </div>
 
       <footer class="siteFooter">
+        <div class="footerTop">
+          <div class="footerBrand">
+            <span class="footerLogo" aria-hidden="true"></span>
+            <div>
+              <div class="footerTitle">Callsign: JENKO</div>
+              <div class="footerDesc">Minimal, consistent, and easy to maintain.</div>
+            </div>
+          </div>
+
+          <div class="footerLinks">
+            <a href="blog.html">Logs</a>
+            <a href="media.html">Media</a>
+            <a href="index.html">Home</a>
+          </div>
+        </div>
+
         <div class="footerBottom">
-          <div>© <span id="year"></span> <span class="maroon">Daily Log</span></div>
+          <div>© <span id="year"></span> <span class="maroon">JENKO</span></div>
+          <div>hosted on github pages</div>
         </div>
       </footer>
 
     </div>
   </div>
 
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
   <script src="js/app.js"></script>
 </body>
 </html>

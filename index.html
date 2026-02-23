@@ -10,94 +10,113 @@
   <div class="pageWrap">
     <div class="container">
 
-      <nav class="nav">
-        <a class="brand" href="index.html">
-          <span class="logo" aria-hidden="true"></span>
-          <span>Callsign: JENKO</span>
-        </a>
+      <header class="header">
+        <nav class="nav">
+          <a class="brand" href="index.html">
+            <span class="logo" aria-hidden="true"></span>
+            <span class="brandText">
+              <span class="brandTitle">Callsign: JENKO</span>
+              <span class="brandSub">DAILY LOG // SITREP</span>
+            </span>
+          </a>
 
-        <div class="links">
-          <a data-nav href="index.html">Home</a>
-          <a data-nav href="blog.html">Blog</a>
-          <a data-nav href="media.html">Media</a>
-          <a data-nav href="about.html">About</a>
-        </div>
-      </nav>
-
-      <section class="hero">
-        <div>
-          <h1>What I did today.</h1>
-          <p>A clean timeline of my days — what I’m building, learning, training, and chasing.</p>
-          <div class="hint">
-            <span class="pill">Tip</span>
-            <span>Add new posts in <b>js/posts.js</b> and push to GitHub.</span>
+          <div class="links">
+            <a data-nav href="index.html">Home</a>
+            <a data-nav href="blog.html">Logs</a>
+            <a data-nav href="media.html">Media</a>
+            <a data-nav href="about.html">About</a>
           </div>
-        </div>
+        </nav>
 
-        <div class="stats">
-          <div class="statCard">
-            <div class="statTop">
-              <div class="kicker">Latest mission</div>
-              <div class="pill" id="latestMood">—</div>
+        <div class="topStrip">STATUS UPDATE // MOST RECENT ENTRY</div>
+      </header>
+
+      <section class="panel panelPad">
+        <div class="heroGrid">
+          <div>
+            <div class="h3">Mission for today</div>
+            <h1 class="h1" style="margin-top:10px;">Track the day. Stack the wins.</h1>
+            <p style="margin-top:10px;">
+              A clean timeline of what I’m doing, building, learning, and chasing — written daily.
+              No fluff. Just progress.
+            </p>
+
+            <div class="hint" style="margin-top:10px;">
+              <span class="pill">NOTE</span>
+              <span>Add new posts in <b>js/posts.js</b> and push to GitHub.</span>
             </div>
-            <div class="statValue" id="latestDate">—</div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="button" href="blog.html">View all logs →</a>
+              <a class="buttonGhost" href="media.html">Open media</a>
+            </div>
           </div>
 
-          <div class="statCard">
-            <div class="statTop">
-              <div class="kicker">Total posts</div>
-              <div class="pill" id="postCount">0</div>
+          <div class="stats">
+            <div class="statCard">
+              <div class="statTop">
+                <div class="kicker">Latest mood</div>
+                <div class="pill" id="latestMood">—</div>
+              </div>
+              <div class="statValue" id="latestDate">—</div>
             </div>
-            <div class="statValue">Keeping the streak alive.</div>
+
+            <div class="statCard">
+              <div class="statTop">
+                <div class="kicker">Total logs</div>
+                <div class="pill" id="postCount">0</div>
+              </div>
+              <div class="statValue">Operational tempo: steady.</div>
+            </div>
           </div>
         </div>
       </section>
 
-      <div class="grid">
+      <div class="homeGrid">
+        <!-- Latest post -->
         <div id="latest"></div>
 
+        <!-- Sidebar -->
         <aside class="sideCard">
-          <h3>Quick links</h3>
+          <div class="h3">Quick actions</div>
 
-          <div class="sideItem">
+          <div class="sideItem" style="margin-top:12px;">
             <div class="kicker">Browse</div>
-            <div class="small"><a href="blog.html"><b>All posts</b></a> — read older entries.</div>
+            <div class="small"><a href="blog.html"><b>All logs</b></a> — older entries and full archive.</div>
           </div>
 
           <div class="sideItem">
             <div class="kicker">Gallery</div>
-            <div class="small"><a href="media.html"><b>Featured media</b></a> — photos & videos from posts.</div>
+            <div class="small"><a href="media.html"><b>Featured media</b></a> — photos & videos used in logs.</div>
           </div>
 
           <div class="sideItem">
-            <div class="kicker">About</div>
-            <div class="small"><a href="about.html"><b>Who I am</b></a></div>
+            <div class="kicker">Profile</div>
+            <div class="small"><a href="about.html"><b>About</b></a> — who I am and why this exists.</div>
           </div>
         </aside>
       </div>
 
       <footer class="siteFooter">
         <div class="footerTop">
-          <div>
-            <div class="footerBrand">
-              <span class="footerLogo"></span>
-              <div>
-                <div class="footerTitle">Callsign: JENKO</div>
-                <div class="footerDesc">“Tasked with everything. Focused on nothing. Proceeding anyway.”</div>
-              </div>
+          <div class="footerBrand">
+            <span class="footerLogo" aria-hidden="true"></span>
+            <div>
+              <div class="footerTitle">Callsign: JENKO</div>
+              <div class="footerDesc">Daily SITREPs, media, and progress — stored as a clean timeline.</div>
             </div>
           </div>
 
           <div class="footerLinks">
-            <a href="blog.html">All posts</a>
+            <a href="blog.html">Logs</a>
             <a href="media.html">Media</a>
             <a href="about.html">About</a>
           </div>
         </div>
 
         <div class="footerBottom">
-          <div>© <span id="year"></span> <span class="maroon">Callsign: JENKO</span></div>
-          <div>Built on Chronic Caffeine Addiction</div>
+          <div>© <span id="year"></span> <span class="maroon">JENKO</span></div>
+          <div>hosted on github pages</div>
         </div>
       </footer>
 
@@ -111,6 +130,7 @@
   <script src="js/posts.js"></script>
   <script src="js/app.js"></script>
 
+  <!-- Fill hero stats -->
   <script>
     (function(){
       if(!window.POSTS || !window.POSTS.length) return;
@@ -118,9 +138,13 @@
       const latest = posts[0];
       const fmt = (iso) => new Date(iso + "T00:00:00").toLocaleDateString(undefined, { year:"numeric", month:"long", day:"numeric" });
 
-      document.getElementById("latestMood").textContent = latest.mood || "—";
-      document.getElementById("latestDate").textContent = fmt(latest.date);
-      document.getElementById("postCount").textContent = String(posts.length);
+      const moodEl = document.getElementById("latestMood");
+      const dateEl = document.getElementById("latestDate");
+      const countEl = document.getElementById("postCount");
+
+      if(moodEl) moodEl.textContent = latest.mood || "—";
+      if(dateEl) dateEl.textContent = fmt(latest.date);
+      if(countEl) countEl.textContent = String(posts.length);
     })();
   </script>
 </body>
