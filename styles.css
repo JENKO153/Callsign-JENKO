@@ -26,8 +26,10 @@
   --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
-  /* Sticky */
-  --sticky-gap: 14px;
+  /* Fixed Nav (full width) */
+  --nav-height: 78px; /* menu bar height stays constant */
+  --nav-gap: 14px;    /* distance from top of screen */
+  --container-pad: 22px;
 }
 
 *{box-sizing:border-box}
@@ -55,36 +57,41 @@ body{
 a{color:inherit; text-decoration:none}
 a:hover{opacity:.98}
 
+/* Container padding includes nav space so content doesn't sit under fixed nav */
 .container{
   max-width:var(--max);
   margin:0 auto;
-  padding:32px 22px 62px;
+  padding:
+    calc(32px + var(--nav-gap) + var(--nav-height))
+    var(--container-pad)
+    62px;
 }
 
 /* =========================
-   HEADER / NAV (STICKY)
+   NAV (FIXED FULL WIDTH)
    ========================= */
-.header{
-  position: static; /* header is normal flow */
-  margin-bottom: 12px;
-}
+.header{ position: static; }
 
 .nav{
-  position: sticky;
-  top: var(--sticky-gap);
-  z-index: 999;
+  position: fixed;
+  top: var(--nav-gap);
+  left: 0;
+  right: 0;
+  width: 100%;
+
+  height: var(--nav-height);
+  padding: 0 var(--container-pad);
 
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:14px;
 
-  padding:16px 18px;
-  border:1px solid var(--line2);
-  background: rgba(255,255,255,.96); /* a bit more solid so content behind looks good */
-  border-radius: var(--radius);
-  box-shadow: var(--shadowSoft);
+  border-bottom:1px solid var(--line2);
+  background: rgba(255,255,255,.96);
   backdrop-filter: blur(10px);
+
+  z-index: 9999;
 }
 
 /* Brand */
@@ -112,21 +119,15 @@ a:hover{opacity:.98}
   letter-spacing:.12em;
 }
 
-/* ✅ Logo sizing (slightly larger but controlled) */
+/* ✅ Bigger logo, nav height stays constant */
 .logoImg{
-  height: 100px;
-  max-height: 100px;
+  height: 90px;              /* visual size */
   width: auto;
   display:block;
   object-fit: contain;
+  transform: translateY(4px); /* center it nicely */
   flex-shrink: 0;
-}
-
-@media (max-width: 600px){
-  .logoImg{
-    height: 60px;
-    max-height: 60px;
-  }
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,.18));
 }
 
 /* Nav links */
@@ -174,20 +175,18 @@ a:hover{opacity:.98}
 }
 
 /* =========================
-   TOP STRIP (SCROLLS NORMALLY)
+   TOP STRIP (SCROLLS)
    ========================= */
 .topStrip{
-  position: relative;    /* ✅ normal flow (no overlay) */
+  position: relative; /* normal flow */
   z-index: 1;
 
-  margin-top: 14px;
-  margin-bottom: 26px;
-  padding: 14px 18px;
+  margin-top:14px;
+  margin-bottom:26px;
+  padding:14px 18px;
 
   border-radius: 12px;
   border:1px solid rgba(122,31,42,.16);
-
-  /* nice but safe because it scrolls */
   background: rgba(243,230,232,.75);
 
   color:var(--brand);
@@ -206,7 +205,6 @@ a:hover{opacity:.98}
   border-radius: calc(var(--radius) + 6px);
   box-shadow: var(--shadow);
 }
-
 .panelPad{ padding:26px; }
 
 .card{
@@ -218,7 +216,7 @@ a:hover{opacity:.98}
   position:relative;
 }
 
-/* Stripe ONLY on hover */
+/* Stripe only on hover */
 .card::before{
   content:"";
   position:absolute;
@@ -232,7 +230,6 @@ a:hover{opacity:.98}
   transform: translateX(-2px);
   transition: opacity .18s ease, transform .18s ease;
 }
-
 .card:hover::before{
   opacity:.95;
   transform: translateX(0);
@@ -275,17 +272,16 @@ hr.sep{
   margin:20px 0;
 }
 
-/* Headings */
+/* =========================
+   HEADINGS
+   ========================= */
 h1,h2,h3{margin:0}
 .h1{
   font-size: clamp(30px, 3.2vw, 44px);
   line-height:1.08;
   letter-spacing:-.02em;
 }
-.h2{
-  font-size:20px;
-  margin-top:10px;
-}
+.h2{ font-size:20px; margin-top:10px; }
 .h3{
   font-family: var(--mono);
   font-size:12px;
@@ -294,7 +290,9 @@ h1,h2,h3{margin:0}
   color: var(--brand);
 }
 
-/* Buttons */
+/* =========================
+   BUTTONS
+   ========================= */
 .button{
   display:inline-flex;
   align-items:center;
@@ -332,7 +330,9 @@ h1,h2,h3{margin:0}
   border-color: rgba(122,31,42,.18);
 }
 
-/* Layout */
+/* =========================
+   HOME LAYOUT
+   ========================= */
 .homeGrid{
   display:grid;
   grid-template-columns: 1fr 0.42fr;
@@ -361,7 +361,7 @@ h1,h2,h3{margin:0}
 }
 .hint b{color:var(--text)}
 
-/* status blocks */
+/* Stats */
 .stats{ display:grid; gap:14px; }
 .statCard{
   border:1px solid var(--line2);
@@ -402,7 +402,7 @@ h1,h2,h3{margin:0}
   font-size:18px;
 }
 
-/* sidebar */
+/* Sidebar */
 .sideCard{
   background: var(--paper);
   border:1px solid var(--line2);
@@ -419,8 +419,11 @@ h1,h2,h3{margin:0}
 }
 .sideItem:last-child{ margin-bottom:0; }
 
-/* blog list */
+/* =========================
+   BLOG LIST
+   ========================= */
 .list{ display:grid; gap:14px; }
+
 .post-item{
   padding:18px;
   border:1px solid var(--line2);
@@ -434,13 +437,16 @@ h1,h2,h3{margin:0}
 }
 .post-item .meta{ margin-bottom:10px; }
 
-/* media */
+/* =========================
+   MEDIA
+   ========================= */
 .media-grid{
   display:grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap:16px;
   margin-top:18px;
 }
+
 .media-tile{
   border-radius: var(--radius);
   overflow:hidden;
@@ -456,7 +462,9 @@ h1,h2,h3{margin:0}
 }
 .media-tile .cap{ padding:14px; }
 
-/* footer */
+/* =========================
+   FOOTER
+   ========================= */
 .siteFooter{
   margin-top:28px;
   border:1px solid var(--line2);
@@ -465,6 +473,7 @@ h1,h2,h3{margin:0}
   box-shadow: var(--shadowSoft);
   overflow:hidden;
 }
+
 .siteFooter::before{
   content:"";
   display:block;
@@ -472,6 +481,7 @@ h1,h2,h3{margin:0}
   background: linear-gradient(90deg, var(--brand), transparent 60%);
   opacity:.85;
 }
+
 .footerTop{
   padding:18px 18px 14px;
   display:flex;
@@ -479,23 +489,27 @@ h1,h2,h3{margin:0}
   justify-content:space-between;
   gap:18px;
 }
+
 .footerBrand{
   display:flex;
   align-items:center;
   gap:12px;
 }
+
 .footerLogo{
   width:34px;
   height:34px;
   border-radius: 10px;
   background: linear-gradient(135deg, var(--brand), var(--brandDark));
 }
+
 .footerTitle{
   font-weight:950;
   letter-spacing:.10em;
   text-transform:uppercase;
   font-size:12px;
 }
+
 .footerDesc{
   margin-top:6px;
   color:var(--muted);
@@ -503,12 +517,14 @@ h1,h2,h3{margin:0}
   line-height:1.6;
   max-width: 56ch;
 }
+
 .footerLinks{
   display:flex;
   gap:10px;
   flex-wrap:wrap;
   justify-content:flex-end;
 }
+
 .footerLinks a{
   padding:10px 14px;
   border-radius: 12px;
@@ -520,11 +536,13 @@ h1,h2,h3{margin:0}
   letter-spacing:.10em;
   text-transform:uppercase;
 }
+
 .footerLinks a:hover{
   background: var(--brandSoft);
   color: var(--brand);
   border-color: rgba(122,31,42,.16);
 }
+
 .footerBottom{
   border-top:1px solid var(--line2);
   padding:14px 18px;
@@ -532,25 +550,30 @@ h1,h2,h3{margin:0}
   align-items:center;
   justify-content:space-between;
   gap:12px;
+
   color:var(--muted);
   font-size:12px;
   font-family: var(--mono);
   letter-spacing:.10em;
   text-transform:uppercase;
 }
+
 .footerBottom .maroon{
   color:var(--brand);
   font-weight:950;
 }
 
+/* =========================
+   RESPONSIVE
+   ========================= */
 @media (max-width: 980px){
-  .container{ padding:26px 16px 54px; }
+  .container{ padding:calc(26px + var(--nav-gap) + var(--nav-height)) 16px 54px; }
   .heroGrid{ grid-template-columns: 1fr; }
   .homeGrid{ grid-template-columns: 1fr; }
+  :root{ --container-pad: 16px; }
 }
 
 @media (max-width: 720px){
-  .nav{ padding:14px 14px; }
   .links a{ padding:9px 11px; }
   .panelPad{ padding:20px; }
   .card{ padding:18px; }
@@ -558,9 +581,17 @@ h1,h2,h3{margin:0}
   .footerTop{ flex-direction:column; }
   .footerLinks{ justify-content:flex-start; }
   .footerBottom{ flex-direction:column; align-items:flex-start; }
+
+  /* Logo scales down on mobile */
+  .logoImg{
+    height: 64px;
+    transform: translateY(3px);
+  }
 }
 
-/* Global hover */
+/* =========================
+   GLOBAL HOVER FEEL
+   ========================= */
 .card,
 .post-item,
 .sideItem,
@@ -587,28 +618,4 @@ a:hover{ color: var(--brand); }
 .small a:hover{
   text-decoration: underline;
   text-underline-offset: 3px;
-}
-
-/* ===== Lock nav height so it never grows ===== */
-.nav{
-  height: 70px !important;       /* adjust if you want slightly taller/shorter */
-  padding: 0 18px !important;    /* remove vertical padding so height is controlled */
-  display:flex !important;
-  align-items:center !important;
-  overflow: visible !important;  /* allows logo to overflow if bigger */
-}
-
-/* ===== Make logo visually bigger without resizing nav ===== */
-.nav .brand{
-  height: 100%;
-  display:flex;
-  align-items:center;
-}
-
-.nav .brand img,
-.logoImg{
-  height: 100px !important;       /* bigger than nav height = nice overflow */
-  width: auto !important;
-  object-fit: contain;
-  transform: translateY(4px);    /* optional micro-adjust for vertical centering */
 }
