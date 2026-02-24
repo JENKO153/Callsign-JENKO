@@ -181,7 +181,7 @@ a:hover{opacity:.98}
   position: relative; /* normal flow */
   z-index: 1;
 
-  margin-top:14px;
+  margin-top: 10px !important;
   margin-bottom:26px;
   padding:14px 18px;
 
@@ -618,4 +618,14 @@ a:hover{ color: var(--brand); }
 .small a:hover{
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+/* ===== Remove top gap above fixed nav ===== */
+.nav{
+  top: 0 !important;          /* flush with top of screen */
+}
+
+/* ===== Adjust container so content still clears nav ===== */
+.container{
+  padding-top: 96px !important;  /* nav height (78) + breathing room */
 }
