@@ -28,11 +28,14 @@
   --max:        1180px;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   /* Fixed Nav (full width) */
   --nav-height: 78px; /* menu bar height stays constant */
   --nav-gap: 14px;    /* distance from top of screen */
   --container-pad: 22px;
 =======
+=======
+>>>>>>> Stashed changes
   --font: "Oswald", ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
   --body: ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
@@ -40,6 +43,9 @@
   --nav-h:      70px;
   --nav-gap:    14px;
   --trans:      .18s ease;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 
@@ -77,6 +83,7 @@ li { margin-bottom: .35em; }
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 a{color:inherit; text-decoration:none}
 a:hover{opacity:.98}
 
@@ -112,6 +119,15 @@ a:hover{opacity:.98}
   padding: 32px 22px 72px;
 }
 
+=======
+/* === CONTAINER ============================================== */
+.container {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 32px 22px 72px;
+}
+
+>>>>>>> Stashed changes
 /* === HEADER / NAV =========================================== */
 .header {
   margin-bottom: 12px;
@@ -123,6 +139,9 @@ a:hover{opacity:.98}
   z-index: 999;
   height: var(--nav-h);
   padding: 0 18px;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
   display: flex;
@@ -131,12 +150,15 @@ a:hover{opacity:.98}
   gap: 14px;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   border-bottom:1px solid var(--line2);
   background: rgba(255,255,255,.96);
   backdrop-filter: blur(10px);
 
   z-index: 9999;
 =======
+=======
+>>>>>>> Stashed changes
   border: 1px solid var(--line2);
   background: rgba(255,255,255,.97);
   border-radius: var(--radius);
@@ -144,6 +166,9 @@ a:hover{opacity:.98}
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   overflow: visible;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 
@@ -174,9 +199,14 @@ a:hover{opacity:.98}
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 /* ✅ Bigger logo, nav height stays constant */
 .logoImg{
   height: 90px;              /* visual size */
+=======
+.logoImg {
+  height: 100px;
+>>>>>>> Stashed changes
 =======
 .logoImg {
   height: 100px;
@@ -186,8 +216,11 @@ a:hover{opacity:.98}
   transform: translateY(4px); /* center it nicely */
   flex-shrink: 0;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   filter: drop-shadow(0 3px 6px rgba(0,0,0,.18));
 =======
+=======
+>>>>>>> Stashed changes
   transform: translateY(2px);
 }
 
@@ -197,6 +230,9 @@ a:hover{opacity:.98}
   flex-wrap: wrap;
   gap: 6px;
   align-items: center;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 
@@ -237,6 +273,7 @@ a:hover{opacity:.98}
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 /* =========================
    TOP STRIP (SCROLLS)
    ========================= */
@@ -275,6 +312,34 @@ a:hover{opacity:.98}
 }
 >>>>>>> Stashed changes
 
+=======
+/* Hamburger (mobile) */
+.navToggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line2);
+  border-radius: 10px;
+  background: var(--paper2);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.navToggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform .22s ease, opacity .22s ease;
+}
+
+>>>>>>> Stashed changes
 .navToggle[aria-expanded="true"] span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
@@ -331,10 +396,16 @@ a:hover{opacity:.98}
   padding: 13px 18px;
   border-radius: 12px;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   border:1px solid rgba(122,31,42,.16);
   background: rgba(243,230,232,.75);
 
   color:var(--brand);
+=======
+  border: 1px solid rgba(122,31,42,.16);
+  background: rgba(243,230,232,.72);
+  color: var(--brand);
+>>>>>>> Stashed changes
 =======
   border: 1px solid rgba(122,31,42,.16);
   background: rgba(243,230,232,.72);
@@ -363,12 +434,18 @@ a:hover{opacity:.98}
   box-shadow: var(--shadow);
 }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 .panelPad{ padding:26px; }
 =======
 
 .panelPad { padding: 28px; }
 >>>>>>> Stashed changes
 
+=======
+
+.panelPad { padding: 28px; }
+
+>>>>>>> Stashed changes
 .card {
   background: var(--paper);
   border: 1px solid var(--line2);
@@ -380,6 +457,7 @@ a:hover{opacity:.98}
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 /* Stripe only on hover */
 .card::before{
   content:"";
@@ -390,12 +468,17 @@ a:hover{opacity:.98}
   width:4px;
   border-radius:999px;
 =======
+=======
+>>>>>>> Stashed changes
 .card::before {
   content: "";
   position: absolute;
   left: 0; top: 14px; bottom: 14px;
   width: 4px;
   border-radius: 999px;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   background: var(--brand);
   opacity: 0;
@@ -403,10 +486,13 @@ a:hover{opacity:.98}
   transition: opacity var(--trans), transform var(--trans);
 }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 .card:hover::before{
   opacity:.95;
   transform: translateX(0);
 =======
+=======
+>>>>>>> Stashed changes
 
 .card:hover::before { opacity: .95; transform: translateX(0); }
 
@@ -414,6 +500,9 @@ a:hover{opacity:.98}
   transform: translateY(-2px);
   box-shadow: var(--shadow);
   border-color: rgba(122,31,42,.18);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 
@@ -478,6 +567,7 @@ a:hover{opacity:.98}
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 hr.sep{
   border:0;
   border-top:1px dashed var(--line2);
@@ -498,6 +588,9 @@ h1,h2,h3{margin:0}
 =======
 .kicker {
 >>>>>>> Stashed changes
+=======
+.kicker {
+>>>>>>> Stashed changes
   font-family: var(--mono);
   font-size: 11px;
   color: var(--muted);
@@ -506,6 +599,7 @@ h1,h2,h3{margin:0}
   text-transform: uppercase;
 }
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 /* =========================
    BUTTONS
@@ -517,6 +611,8 @@ h1,h2,h3{margin:0}
   margin-top:16px;
   padding:12px 16px;
 =======
+=======
+>>>>>>> Stashed changes
 hr.sep {
   border: 0;
   border-top: 1px dashed var(--line2);
@@ -530,6 +626,9 @@ hr.sep {
   gap: 8px;
   margin-top: 16px;
   padding: 11px 18px;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   border-radius: 12px;
   background: var(--brand);
@@ -597,6 +696,7 @@ hr.sep {
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 /* =========================
    HOME LAYOUT
    ========================= */
@@ -609,6 +709,11 @@ hr.sep {
 
 .heroGrid{
   display:grid;
+=======
+/* === LAYOUT — HOME ========================================== */
+.heroGrid {
+  display: grid;
+>>>>>>> Stashed changes
 =======
 /* === LAYOUT — HOME ========================================== */
 .heroGrid {
@@ -627,18 +732,24 @@ hr.sep {
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 /* Stats */
 .stats{ display:grid; gap:14px; }
 .statCard{
   border:1px solid var(--line2);
   background: linear-gradient(180deg, #fff, #fbfbfc);
 =======
+=======
+>>>>>>> Stashed changes
 /* === STAT CARDS ============================================= */
 .stats { display: grid; gap: 14px; }
 
 .statCard {
   border: 1px solid var(--line2);
   background: linear-gradient(160deg, #fff, #f9f9fa);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   border-radius: 14px;
   padding: 16px;
@@ -666,9 +777,12 @@ hr.sep {
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 /* Sidebar */
 .sideCard{
 =======
+=======
+>>>>>>> Stashed changes
 .statValue {
   margin-top: 12px;
   font-weight: 800;
@@ -678,6 +792,9 @@ hr.sep {
 
 /* === SIDEBAR ================================================ */
 .sideCard {
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   background: var(--paper);
   border: 1px solid var(--line2);
@@ -686,6 +803,7 @@ hr.sep {
   padding: 18px;
 }
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 /* =========================
    BLOG LIST
@@ -696,6 +814,8 @@ hr.sep {
   padding:18px;
   border:1px solid var(--line2);
 =======
+=======
+>>>>>>> Stashed changes
 .sideItem {
   padding: 13px;
   border-radius: 11px;
@@ -719,6 +839,9 @@ hr.sep {
 .post-item {
   padding: 18px;
   border: 1px solid var(--line2);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   border-radius: var(--radius);
   background: var(--paper2);
@@ -726,17 +849,21 @@ hr.sep {
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 /* =========================
    MEDIA
    ========================= */
 .media-grid{
   display:grid;
 =======
+=======
+>>>>>>> Stashed changes
 .post-item:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow);
   border-color: rgba(122,31,42,.20);
   background: #fff;
+<<<<<<< Updated upstream
 }
 
 .post-item h3 {
@@ -759,6 +886,25 @@ hr.sep {
 =======
 .media-tile {
 >>>>>>> Stashed changes
+=======
+}
+
+.post-item h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+  line-height: 1.28;
+}
+
+/* === MEDIA GRID ============================================= */
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.media-tile {
+>>>>>>> Stashed changes
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--line2);
@@ -768,6 +914,7 @@ hr.sep {
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 /* =========================
    FOOTER
    ========================= */
@@ -776,6 +923,8 @@ hr.sep {
   border:1px solid var(--line2);
   background: rgba(255,255,255,.92);
 =======
+=======
+>>>>>>> Stashed changes
 .media-tile:hover {
   transform: translateY(-3px);
   box-shadow: 0 16px 28px rgba(0,0,0,.09);
@@ -842,12 +991,16 @@ hr.sep {
   margin-top: 32px;
   border: 1px solid var(--line2);
   background: rgba(255,255,255,.94);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   border-radius: calc(var(--radius) + 6px);
   box-shadow: var(--shadowSoft);
   overflow: hidden;
 }
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 .siteFooter::before{
   content:"";
@@ -900,11 +1053,38 @@ hr.sep {
   width: 36px;
   height: 36px;
 >>>>>>> Stashed changes
+=======
+.siteFooter::before {
+  content: "";
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand) 0%, rgba(122,31,42,.3) 60%, transparent 100%);
+}
+
+.footerTop {
+  padding: 20px 20px 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.footerBrand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footerLogo {
+  width: 36px;
+  height: 36px;
+>>>>>>> Stashed changes
   border-radius: 10px;
   background: linear-gradient(135deg, var(--brand), var(--brandDark));
   flex-shrink: 0;
 }
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 .footerTitle{
   font-weight:950;
@@ -975,11 +1155,51 @@ hr.sep {
 =======
 .footerLinks a:hover {
 >>>>>>> Stashed changes
+=======
+.footerTitle {
+  font-weight: 800;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  font-size: 11.5px;
+}
+
+.footerDesc {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.5;
+  max-width: 52ch;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.footerLinks a {
+  padding: 9px 14px;
+  border-radius: 11px;
+  border: 1px solid var(--line);
+  background: var(--paper2);
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  transition: background var(--trans), color var(--trans), border-color var(--trans);
+}
+
+.footerLinks a:hover {
+>>>>>>> Stashed changes
   background: var(--brandSoft);
   color: var(--brand);
   border-color: rgba(122,31,42,.16);
 }
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 .footerBottom{
   border-top:1px solid var(--line2);
@@ -1122,6 +1342,81 @@ hr.sep {
   pointer-events: auto;
 }
 
+=======
+.footerBottom {
+  border-top: 1px solid var(--line2);
+  padding: 13px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 11.5px;
+  font-family: var(--mono);
+  letter-spacing: .10em;
+  text-transform: uppercase;
+}
+
+.footerBottom .maroon {
+  color: var(--brand);
+  font-weight: 800;
+}
+
+/* === EMPTY STATE ============================================ */
+.emptyState {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+/* === LOADING SKELETON ======================================= */
+.skeleton {
+  background: linear-gradient(90deg, var(--line) 25%, var(--line2) 50%, var(--line) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 6px;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* === SCROLL TO TOP ========================================== */
+.scrollTop {
+  position: fixed;
+  bottom: 28px;
+  right: 22px;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  box-shadow: 0 8px 20px rgba(122,31,42,.30);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .22s ease, transform .22s ease;
+  z-index: 900;
+  pointer-events: none;
+}
+
+.scrollTop.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+>>>>>>> Stashed changes
 .scrollTop:hover {
   background: var(--brandDark);
 }
@@ -1147,5 +1442,8 @@ hr.sep {
 @media (max-width: 480px) {
   .heroGrid { gap: 16px; }
   .media-grid { grid-template-columns: 1fr; }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
