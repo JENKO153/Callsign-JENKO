@@ -20,24 +20,16 @@
               <span class="brandSub">DAILY LOG // SITREP</span>
             </span>
           </a>
-
-          <!-- Desktop links -->
           <div class="links">
             <a data-nav href="index.html">Home</a>
             <a data-nav href="blog.html">Logs</a>
             <a data-nav href="media.html">Media</a>
             <a data-nav href="about.html">About</a>
           </div>
-
-          <!-- Mobile hamburger -->
           <button class="navToggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
           </button>
         </nav>
-
-        <!-- Mobile dropdown menu -->
         <div class="mobileMenu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
           <a data-nav href="index.html">Home</a>
           <a data-nav href="blog.html">Logs</a>
@@ -48,14 +40,12 @@
 
       <div class="topStrip">STATUS UPDATE // MOST RECENT ENTRY</div>
 
-      <!-- ===== HERO BANNER ===== -->
-      <!-- To use your own image: add data-src="images/your-photo.jpg" to the div below -->
-      <div class="heroBanner" id="heroBanner" data-src="">
-        <!-- Filled by app.js -->
-      </div>
-      <div class="heroBannerText" style="position:relative; padding:0; margin-top:-6px; margin-bottom:22px; display:none" id="heroBannerCaption">
-        <!-- Optional caption injected by JS if image is set -->
-      </div>
+      <!-- ===== HERO BANNER =====
+           To use your own photo: set data-src="images/your-photo.jpg"
+           Leave data-src="" to show the dark placeholder. -->
+      <div class="heroBanner" id="heroBanner" data-src=""></div>
+
+      <!-- ===== HERO PANEL ===== -->
       <section class="panel panelPad">
         <div class="heroGrid">
           <div>
@@ -66,14 +56,12 @@
               time out bush, days on the road, and whatever side quests appear along the way.
             </p>
             <p>Mission scope unclear. Commitment high. Planning questionable. SITREP updates ongoing.</p>
-
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
               <a class="button" href="blog.html">View all logs →</a>
               <a class="buttonGhost" href="media.html">Open media</a>
             </div>
           </div>
 
-          <!-- Stat cards -->
           <div class="stats">
             <div class="statCard">
               <div class="statTop">
@@ -82,7 +70,6 @@
               </div>
               <div class="statValue" id="latestDate">—</div>
             </div>
-
             <div class="statCard">
               <div class="statTop">
                 <div class="kicker">Total logs</div>
@@ -100,17 +87,14 @@
 
         <aside class="sideCard">
           <div class="h3">Quick actions</div>
-
           <div class="sideItem" style="margin-top:12px">
             <div class="kicker">Browse</div>
             <div class="small"><a href="blog.html"><b>All logs</b></a> — older entries and full archive.</div>
           </div>
-
           <div class="sideItem">
             <div class="kicker">Gallery</div>
             <div class="small"><a href="media.html"><b>Featured media</b></a> — photos &amp; videos used in logs.</div>
           </div>
-
           <div class="sideItem">
             <div class="kicker">Profile</div>
             <div class="small"><a href="about.html"><b>About</b></a> — who I am and why this exists.</div>
@@ -142,7 +126,6 @@
     </div>
   </div>
 
-  <!-- Scroll to top -->
   <button class="scrollTop" id="scrollTopBtn" aria-label="Back to top">↑</button>
 
   <script src="js/posts.js"></script>

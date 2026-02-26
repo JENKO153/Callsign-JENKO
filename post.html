@@ -7,6 +7,12 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
+  <!-- Reading progress bar — fixed to top of viewport, outside .container -->
+  <div class="readProgress" id="readProgress" aria-hidden="true">
+    <div class="readProgressFill" id="readProgressFill"></div>
+  </div>
+
   <div class="pageWrap">
     <div class="container">
 
@@ -39,10 +45,7 @@
 
       <div class="topStrip">ENTRY // FULL REPORT</div>
 
-      <!-- Reading progress bar -->
-      <div class="readProgress" id="readProgress" aria-hidden="true">
-        <div class="readProgressFill" id="readProgressFill"></div>
-      </div>
+      <!-- Post content injected by app.js -->
       <div id="postView"></div>
 
       <!-- ===== FOOTER ===== -->
