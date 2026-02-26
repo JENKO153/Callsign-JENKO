@@ -46,7 +46,35 @@
         <p style="margin-top:10px; color:var(--muted)">High caffeine. Low clarity. Maximum effort.</p>
       </section>
 
-      <div class="card" style="margin-top:16px">
+      <!-- ===== FILTER BAR ===== -->
+      <div class="filterBar" style="margin-top:16px">
+        <!-- Search -->
+        <div class="searchWrap">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input
+            class="searchInput"
+            id="blogSearch"
+            type="search"
+            placeholder="Search logs, tags, summaries…"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+
+        <!-- Tag pills -->
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+          <span class="kicker">Filter:</span>
+          <div class="tagFilterRow" id="tagFilterRow"></div>
+        </div>
+
+        <!-- Result count -->
+        <div class="filterCount" id="filterCount"></div>
+      </div>
+
+      <!-- ===== POST LIST ===== -->
+      <div class="card">
         <div id="blogList" class="list"></div>
       </div>
 

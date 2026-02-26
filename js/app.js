@@ -1,5 +1,6 @@
 // js/app.js
 // Callsign: JENKO — Main Application Logic
+// Features: nav, hero banner, reading progress bar, search + tag filter, media gallery
 
 (function () {
   "use strict";
@@ -148,44 +149,6 @@
           <a class="buttonGhost" href="blog.html">All logs</a>
         </div>
       </div>`;
-  }
-
-  /* ============================================================
-     BLOG LIST PAGE
-     ============================================================ */
-  function renderBlogList() {
-    const el = document.getElementById("blogList");
-    if (!el) return;
-
-    const posts = getSortedPosts();
-
-    if (posts.length === 0) {
-      el.innerHTML = `
-        <div class="emptyState">No logs yet — add your first entry in <b>js/posts.js</b></div>`;
-      return;
-    }
-
-    el.innerHTML = posts
-      .map(
-        (p) => `
-      <div class="post-item">
-        <div class="meta">
-          <span>${fmtDate(p.date)}</span>
-          <span>•</span>
-          <span>Mood: ${p.mood || "—"}</span>
-          <span>•</span>
-          <span class="readTime">⏱ ${readTime(p.content || "")}</span>
-        </div>
-
-        <h3><a href="post.html?id=${encodeURIComponent(p.id)}">${p.title}</a></h3>
-        <p class="small" style="margin: 0 0 12px">${p.summary || ""}</p>
-
-        <div style="display:flex; gap:6px; flex-wrap:wrap;">
-          ${(p.tags || []).map(tagBadge).join("")}
-        </div>
-      </div>`
-      )
-      .join("");
   }
 
   /* ============================================================
@@ -341,6 +304,152 @@
   }
 
   /* ============================================================
+     HERO BANNER (index.html)
+     ============================================================ */
+  function initHeroBanner() {
+    const el = document.getElementById("heroBanner");
+    if (!el) return;
+
+    const src = el.dataset.src;
+
+    if (src) {
+      // Real image supplied via data-src attribute
+      el.innerHTML = `<img src="${src}" alt="Hero banner">`;
+    } else {
+      // Placeholder — swap out once you have an image
+      el.innerHTML = `
+        <div class="heroBannerPlaceholder">
+          <div class="placeholderLabel">// REPLACE WITH YOUR IMAGE //</div>
+        </div>`;
+    }
+  }
+
+  /* ============================================================
+     READING PROGRESS BAR (post.html)
+     ============================================================ */
+  function initReadingProgress() {
+    const bar = document.getElementById("readProgressFill");
+    if (!bar) return;
+
+    function update() {
+      const doc    = document.documentElement;
+      const total  = doc.scrollHeight - doc.clientHeight;
+      const pct    = total > 0 ? (window.scrollY / total) * 100 : 0;
+      bar.style.width = Math.min(pct, 100).toFixed(2) + "%";
+    }
+
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+  }
+
+  /* ============================================================
+     SEARCH + TAG FILTER (blog.html)
+     ============================================================ */
+  function initBlogFilter() {
+    const listEl     = document.getElementById("blogList");
+    const searchEl   = document.getElementById("blogSearch");
+    const tagRowEl   = document.getElementById("tagFilterRow");
+    const countEl    = document.getElementById("filterCount");
+    if (!listEl || !searchEl || !tagRowEl) return;
+
+    const posts       = getSortedPosts();
+    let activeTag     = null;
+    let searchQuery   = "";
+
+    // ── Build tag list ──────────────────────────────────────────
+    const allTags = [...new Set(posts.flatMap(p => p.tags || []))].sort();
+
+    tagRowEl.innerHTML = allTags.map(t => `
+      <button class="tagBtn" data-tag="${t}">#${t}</button>
+    `).join("") + (allTags.length ? `
+      <button class="tagBtn" data-tag="__clear" id="tagClear" style="display:none">✕ clear</button>
+    ` : "");
+
+    tagRowEl.addEventListener("click", e => {
+      const btn = e.target.closest(".tagBtn");
+      if (!btn) return;
+      const tag = btn.dataset.tag;
+
+      if (tag === "__clear") {
+        activeTag = null;
+      } else {
+        activeTag = (activeTag === tag) ? null : tag;
+      }
+
+      // Update button states
+      tagRowEl.querySelectorAll(".tagBtn[data-tag]").forEach(b => {
+        b.classList.toggle("active", b.dataset.tag === activeTag);
+      });
+
+      const clearBtn = document.getElementById("tagClear");
+      if (clearBtn) clearBtn.style.display = activeTag ? "inline-flex" : "none";
+
+      render();
+    });
+
+    // ── Search input ────────────────────────────────────────────
+    searchEl.addEventListener("input", () => {
+      searchQuery = searchEl.value.trim().toLowerCase();
+      render();
+    });
+
+    // ── Highlight matched text ───────────────────────────────────
+    function highlight(text, query) {
+      if (!query) return text;
+      const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      return text.replace(new RegExp(`(${escaped})`, "gi"), "<mark>$1</mark>");
+    }
+
+    // ── Render filtered list ─────────────────────────────────────
+    function render() {
+      let filtered = posts;
+
+      if (activeTag) {
+        filtered = filtered.filter(p => (p.tags || []).includes(activeTag));
+      }
+
+      if (searchQuery) {
+        filtered = filtered.filter(p =>
+          p.title.toLowerCase().includes(searchQuery) ||
+          (p.summary || "").toLowerCase().includes(searchQuery) ||
+          (p.tags || []).some(t => t.includes(searchQuery))
+        );
+      }
+
+      if (countEl) {
+        countEl.textContent = filtered.length === posts.length
+          ? `${posts.length} entr${posts.length === 1 ? "y" : "ies"}`
+          : `${filtered.length} of ${posts.length} entries`;
+      }
+
+      if (filtered.length === 0) {
+        listEl.innerHTML = `<div class="noResults">// NO ENTRIES MATCH — ADJUST SEARCH //</div>`;
+        return;
+      }
+
+      listEl.innerHTML = filtered.map(p => {
+        const hl      = q => highlight(q, searchQuery);
+        const tags    = (p.tags || []).map(t => `<span class="tag">#${t}</span>`).join("");
+        return `
+          <div class="post-item">
+            <div class="meta">
+              <span>${fmtDate(p.date)}</span>
+              <span>•</span>
+              <span>Mood: ${p.mood || "—"}</span>
+              <span>•</span>
+              <span class="readTime">⏱ ${readTime(p.content || "")}</span>
+            </div>
+            <h3><a href="post.html?id=${encodeURIComponent(p.id)}">${hl(p.title)}</a></h3>
+            <p class="small" style="margin:0 0 12px">${hl(p.summary || "")}</p>
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">${tags}</div>
+          </div>`;
+      }).join("");
+    }
+
+    render();
+  }
+
+  /* ============================================================
      INIT
      ============================================================ */
   document.addEventListener("DOMContentLoaded", () => {
@@ -351,9 +460,11 @@
 
     initNav();
     initScrollTop();
+    initHeroBanner();
+    initReadingProgress();
     initHomeStats();
     renderLatest();
-    renderBlogList();
+    initBlogFilter();      // replaces renderBlogList — handles search + tags
     renderSinglePost();
     renderMediaGallery();
   });
