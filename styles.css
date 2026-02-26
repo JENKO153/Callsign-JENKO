@@ -986,24 +986,11 @@ mark {
    4X4 / CAMPING VIBES — ADDITIONS
    ============================================================= */
 
-/* === TYRE TREAD DIVIDER ===================================== */
+/* === DIVIDER ================================================ */
 hr.sep {
   border: 0;
-  margin: 22px 0;
-  height: 12px;
-  background-image: repeating-linear-gradient(
-    90deg,
-    var(--brand) 0px,
-    var(--brand) 6px,
-    transparent 6px,
-    transparent 10px,
-    var(--brand) 10px,
-    var(--brand) 12px,
-    transparent 12px,
-    transparent 18px
-  );
-  opacity: .18;
-  border-radius: 2px;
+  border-top: 1px dashed var(--line2);
+  margin: 20px 0;
 }
 
 /* === STAMPED / STENCIL TAGS ================================= */
