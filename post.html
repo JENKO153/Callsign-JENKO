@@ -8,15 +8,15 @@
 </head>
 <body>
 
-  <!-- Reading progress bar — fixed to top of viewport, outside .container -->
-  <div class="readProgress" id="readProgress" aria-hidden="true">
+  <!-- Reading progress bar — must be outside .pageWrap to be truly fixed -->
+  <div class="readProgress" aria-hidden="true">
     <div class="readProgressFill" id="readProgressFill"></div>
   </div>
 
   <div class="pageWrap">
     <div class="container">
 
-      <!-- ===== NAV ===== -->
+      <!-- NAV -->
       <header class="header">
         <nav class="nav">
           <a class="brand" href="index.html">
@@ -35,7 +35,7 @@
             <span></span><span></span><span></span>
           </button>
         </nav>
-        <div class="mobileMenu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+        <div class="mobileMenu" id="mobileMenu" role="navigation">
           <a data-nav href="index.html">Home</a>
           <a data-nav href="blog.html">Logs</a>
           <a data-nav href="media.html">Media</a>
@@ -48,7 +48,7 @@
       <!-- Post content injected by app.js -->
       <div id="postView"></div>
 
-      <!-- ===== FOOTER ===== -->
+      <!-- FOOTER -->
       <footer class="siteFooter">
         <div class="footerTop">
           <div class="footerBrand">
@@ -74,7 +74,6 @@
   </div>
 
   <button class="scrollTop" id="scrollTopBtn" aria-label="Back to top">↑</button>
-
   <script src="js/posts.js"></script>
   <script src="js/app.js"></script>
 </body>
