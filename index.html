@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Callsign: JENKO — Daily operational log covering training, time out bush, 4WD, and life on the road." />
   <title>Callsign: JENKO — Home</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -10,6 +11,7 @@
   <div class="pageWrap">
     <div class="container">
 
+      <!-- ===== NAV ===== -->
       <header class="header">
         <nav class="nav">
           <a class="brand" href="index.html">
@@ -19,29 +21,44 @@
             </span>
           </a>
 
+          <!-- Desktop links -->
           <div class="links">
             <a data-nav href="index.html">Home</a>
             <a data-nav href="blog.html">Logs</a>
             <a data-nav href="media.html">Media</a>
             <a data-nav href="about.html">About</a>
           </div>
+
+          <!-- Mobile hamburger -->
+          <button class="navToggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </nav>
+
+        <!-- Mobile dropdown menu -->
+        <div class="mobileMenu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+          <a data-nav href="index.html">Home</a>
+          <a data-nav href="blog.html">Logs</a>
+          <a data-nav href="media.html">Media</a>
+          <a data-nav href="about.html">About</a>
+        </div>
       </header>
 
       <div class="topStrip">STATUS UPDATE // MOST RECENT ENTRY</div>
 
+      <!-- ===== HERO ===== -->
       <section class="panel panelPad">
         <div class="heroGrid">
           <div>
             <div class="h3">Mission for today</div>
-            <h1 class="h1" style="margin-top:10px;">“Operating beyond safe caffeine limits.”</h1>
-            <p style="margin-top:10px;">
-              Powered by caffeine and poor decision making, this operational log tracks training sessions, time out bush, days on the road, and whatever side quests appear along the way.
-                <p>Mission scope unclear.</p>
-                Commitment high. 
-                Planning questionable.
-                SITREP updates ongoing.
+            <h1 class="h1" style="margin-top:10px">"Operating beyond safe caffeine limits."</h1>
+            <p style="margin-top:12px">
+              Powered by caffeine and poor decision making, this operational log tracks training sessions,
+              time out bush, days on the road, and whatever side quests appear along the way.
             </p>
+            <p>Mission scope unclear. Commitment high. Planning questionable. SITREP updates ongoing.</p>
 
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
               <a class="button" href="blog.html">View all logs →</a>
@@ -49,6 +66,7 @@
             </div>
           </div>
 
+          <!-- Stat cards -->
           <div class="stats">
             <div class="statCard">
               <div class="statTop">
@@ -69,20 +87,21 @@
         </div>
       </section>
 
+      <!-- ===== MAIN GRID ===== -->
       <div class="homeGrid">
         <div id="latest"></div>
 
         <aside class="sideCard">
           <div class="h3">Quick actions</div>
 
-          <div class="sideItem" style="margin-top:12px;">
+          <div class="sideItem" style="margin-top:12px">
             <div class="kicker">Browse</div>
             <div class="small"><a href="blog.html"><b>All logs</b></a> — older entries and full archive.</div>
           </div>
 
           <div class="sideItem">
             <div class="kicker">Gallery</div>
-            <div class="small"><a href="media.html"><b>Featured media</b></a> — photos & videos used in logs.</div>
+            <div class="small"><a href="media.html"><b>Featured media</b></a> — photos &amp; videos used in logs.</div>
           </div>
 
           <div class="sideItem">
@@ -92,24 +111,23 @@
         </aside>
       </div>
 
+      <!-- ===== FOOTER ===== -->
       <footer class="siteFooter">
         <div class="footerTop">
           <div class="footerBrand">
-            <img src="images/logo.png" alt="Callsign Jenko logo" class="logoImg">
+            <img src="images/logo.png" alt="Callsign Jenko logo" class="logoImg" style="height:48px">
             <div>
-              <div class="footerDesc">“Tasked with everything. Focused on nothing. Proceeding anyway.”</div>
+              <div class="footerDesc">"Tasked with everything. Focused on nothing. Proceeding anyway."</div>
             </div>
           </div>
-
           <div class="footerLinks">
             <a href="blog.html">Logs</a>
             <a href="media.html">Media</a>
             <a href="about.html">About</a>
           </div>
         </div>
-
         <div class="footerBottom">
-          <div>© <span id="year"></span> <span class="maroon">JENKO</span></div>
+          <div>© <span data-year></span> <span class="maroon">JENKO</span></div>
           <div>Made with a Chronic Caffeine Addiction</div>
         </div>
       </footer>
@@ -117,28 +135,10 @@
     </div>
   </div>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <!-- Scroll to top -->
+  <button class="scrollTop" id="scrollTopBtn" aria-label="Back to top">↑</button>
 
   <script src="js/posts.js"></script>
   <script src="js/app.js"></script>
-
-  <script>
-    (function(){
-      if(!window.POSTS || !window.POSTS.length) return;
-      const posts = [...window.POSTS].sort((a,b)=> new Date(b.date) - new Date(a.date));
-      const latest = posts[0];
-      const fmt = (iso) => new Date(iso + "T00:00:00").toLocaleDateString(undefined, { year:"numeric", month:"long", day:"numeric" });
-
-      const moodEl = document.getElementById("latestMood");
-      const dateEl = document.getElementById("latestDate");
-      const countEl = document.getElementById("postCount");
-
-      if(moodEl) moodEl.textContent = latest.mood || "—";
-      if(dateEl) dateEl.textContent = fmt(latest.date);
-      if(countEl) countEl.textContent = String(posts.length);
-    })();
-  </script>
 </body>
 </html>

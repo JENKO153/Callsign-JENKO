@@ -10,58 +10,64 @@
   <div class="pageWrap">
     <div class="container">
 
+      <!-- ===== NAV ===== -->
       <header class="header">
         <nav class="nav">
           <a class="brand" href="index.html">
             <img src="images/logo.png" alt="Callsign Jenko logo" class="logoImg">
             <span class="brandText">
-              <span class="brandTitle">Callsign: JENKO</span>
               <span class="brandSub">DAILY LOG // SITREP</span>
             </span>
           </a>
-
           <div class="links">
             <a data-nav href="index.html">Home</a>
             <a data-nav href="blog.html">Logs</a>
             <a data-nav href="media.html">Media</a>
             <a data-nav href="about.html">About</a>
           </div>
+          <button class="navToggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
         </nav>
+        <div class="mobileMenu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+          <a data-nav href="index.html">Home</a>
+          <a data-nav href="blog.html">Logs</a>
+          <a data-nav href="media.html">Media</a>
+          <a data-nav href="about.html">About</a>
+        </div>
       </header>
 
       <div class="topStrip">ENTRY // FULL REPORT</div>
 
+      <!-- Post content injected here -->
       <div id="postView"></div>
 
+      <!-- ===== FOOTER ===== -->
       <footer class="siteFooter">
         <div class="footerTop">
           <div class="footerBrand">
-            <span class="footerLogo" aria-hidden="true"></span>
+            <div class="footerLogo" aria-hidden="true"></div>
             <div>
-              <div class="footerTitle">Callsign: JENKO</div>
               <div class="footerDesc">Return to the archive anytime.</div>
             </div>
           </div>
-
           <div class="footerLinks">
             <a href="blog.html">Logs</a>
             <a href="media.html">Media</a>
             <a href="index.html">Home</a>
           </div>
         </div>
-
         <div class="footerBottom">
-          <div>© <span id="year"></span> <span class="maroon">JENKO</span></div>
-          <div>hosted on github pages</div>
+          <div>© <span data-year></span> <span class="maroon">JENKO</span></div>
+          <div>Built with a severe disregard for the rules</div>
         </div>
       </footer>
 
     </div>
   </div>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <button class="scrollTop" id="scrollTopBtn" aria-label="Back to top">↑</button>
+
   <script src="js/posts.js"></script>
   <script src="js/app.js"></script>
 </body>

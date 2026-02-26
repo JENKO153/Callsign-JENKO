@@ -1,190 +1,360 @@
 // js/app.js
-function byDateDesc(a, b){
-  return new Date(b.date) - new Date(a.date);
-}
+// Callsign: JENKO — Main Application Logic
 
-function getSortedPosts(){
-  return [...(window.POSTS || [])].sort(byDateDesc);
-}
+(function () {
+  "use strict";
 
-function fmtDate(iso){
-  const d = new Date(iso + "T00:00:00");
-  return d.toLocaleDateString(undefined, { year:"numeric", month:"long", day:"numeric" });
-}
+  /* ============================================================
+     UTILITIES
+     ============================================================ */
 
-function setActiveNav(){
-  const path = location.pathname.split("/").pop() || "index.html";
-  document.querySelectorAll("[data-nav]").forEach(a=>{
-    if(a.getAttribute("href") === path) a.classList.add("active");
-  });
-}
-
-function renderLatest(){
-  const el = document.getElementById("latest");
-  if(!el) return;
-
-  const posts = getSortedPosts();
-  const latest = posts[0];
-
-  if(!latest){
-    el.innerHTML = `<div class="card"><p class="small">No logs yet. Add one in <b>js/posts.js</b>.</p></div>`;
-    return;
+  /**
+   * Sort posts newest-first.
+   */
+  function getSortedPosts() {
+    return [...(window.POSTS || [])].sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
   }
 
-  el.innerHTML = `
-    <div class="card">
-      <div class="meta">
-        <span>${fmtDate(latest.date)}</span>
-        <span>•</span>
-        <span>Mood: ${latest.mood || "—"}</span>
-        <span>•</span>
-        <span>${(latest.tags || []).map(t=>`<span class="tag">#${t}</span>`).join(" ")}</span>
-      </div>
-
-      <h2 class="h2">${latest.title}</h2>
-      <p class="small" style="margin:0">${latest.summary || ""}</p>
-
-      <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <a class="button" href="blog.html">Read more →</a>
-        <a class="buttonGhost" href="post.html?id=${encodeURIComponent(latest.id)}">Open entry</a>
-      </div>
-    </div>
-  `;
-}
-
-function renderBlogList(){
-  const el = document.getElementById("blogList");
-  if(!el) return;
-
-  const posts = getSortedPosts();
-
-  if(posts.length === 0){
-    el.innerHTML = `<div class="post-item"><p class="small">No logs yet. Add one in <b>js/posts.js</b>.</p></div>`;
-    return;
-  }
-
-  el.innerHTML = posts.map(p=>`
-    <div class="post-item">
-      <div class="meta">
-        <span>${fmtDate(p.date)}</span>
-        <span>•</span>
-        <span>Mood: ${p.mood || "—"}</span>
-      </div>
-
-      <h3><a href="post.html?id=${encodeURIComponent(p.id)}">${p.title}</a></h3>
-      <p class="small" style="margin:0 0 10px">${p.summary || ""}</p>
-
-      <div>
-        ${(p.tags || []).map(t=>`<span class="tag">#${t}</span>`).join(" ")}
-      </div>
-    </div>
-  `).join("");
-}
-
-function renderSinglePost(){
-  const el = document.getElementById("postView");
-  if(!el) return;
-
-  const params = new URLSearchParams(location.search);
-  const id = params.get("id");
-
-  const posts = getSortedPosts();
-  const post = (window.POSTS || []).find(p=>p.id === id) || posts[0];
-
-  if(!post){
-    el.innerHTML = `<div class="card"><p class="small">Post not found.</p></div>`;
-    return;
-  }
-
-  const media = (post.featuredMedia || []).map(m=>{
-    if(m.type === "video"){
-      return `
-        <div class="media-tile">
-          <video src="${m.src}" controls></video>
-          <div class="cap"><p class="small" style="margin:0">${m.caption || ""}</p></div>
-        </div>
-      `;
-    }
-    return `
-      <div class="media-tile">
-        <img src="${m.src}" alt="">
-        <div class="cap"><p class="small" style="margin:0">${m.caption || ""}</p></div>
-      </div>
-    `;
-  }).join("");
-
-  el.innerHTML = `
-    <div class="card" style="margin-top:16px">
-      <div class="meta">
-        <span>${fmtDate(post.date)}</span>
-        <span>•</span>
-        <span>Mood: ${post.mood || "—"}</span>
-      </div>
-
-      <h1 class="h1" style="margin-top:10px">${post.title}</h1>
-
-      <div style="margin-top:10px">
-        ${(post.tags || []).map(t=>`<span class="tag">#${t}</span>`).join(" ")}
-      </div>
-
-      <hr class="sep">
-
-      <div>${post.content || ""}</div>
-
-      ${media ? `
-        <hr class="sep">
-        <h2 class="h2" style="margin:0 0 10px">Featured Media</h2>
-        <div class="media-grid">${media}</div>
-      ` : ""}
-    </div>
-  `;
-}
-
-function renderMediaGallery(){
-  const el = document.getElementById("mediaGrid");
-  if(!el) return;
-
-  const items = [];
-  getSortedPosts().forEach(p=>{
-    (p.featuredMedia || []).forEach(m=>{
-      items.push({ ...m, postId: p.id, postTitle: p.title, date: p.date });
+  /**
+   * Format an ISO date string to a readable local date.
+   * @param {string} iso - e.g. "2026-02-23"
+   */
+  function fmtDate(iso) {
+    const d = new Date(iso + "T00:00:00");
+    return d.toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
-  });
-
-  if(items.length === 0){
-    el.innerHTML = `<div class="card" style="margin-top:16px"><p class="small">No media yet. Add images/videos to your posts.</p></div>`;
-    return;
   }
 
-  el.innerHTML = items.map(m=>{
-    const meta = `${fmtDate(m.date)} • <a href="post.html?id=${encodeURIComponent(m.postId)}"><b>${m.postTitle}</b></a>`;
-    if(m.type === "video"){
-      return `
-        <div class="media-tile">
-          <video src="${m.src}" controls></video>
-          <div class="cap">
-            <p class="small" style="margin:0">${meta}</p>
-            <p style="margin:6px 0 0" class="small">${m.caption || ""}</p>
-          </div>
-        </div>
-      `;
-    }
-    return `
-      <div class="media-tile">
-        <img src="${m.src}" alt="">
-        <div class="cap">
-          <p class="small" style="margin:0">${meta}</p>
-          <p style="margin:6px 0 0" class="small">${m.caption || ""}</p>
-        </div>
-      </div>
-    `;
-  }).join("");
-}
+  /**
+   * Estimate reading time from an HTML string.
+   * @param {string} html
+   * @returns {string} e.g. "2 min read"
+   */
+  function readTime(html) {
+    const text = html.replace(/<[^>]+>/g, " ");
+    const words = text.trim().split(/\s+/).filter(Boolean).length;
+    const mins = Math.max(1, Math.round(words / 200));
+    return mins + " min read";
+  }
 
-document.addEventListener("DOMContentLoaded", ()=>{
-  setActiveNav();
-  renderLatest();
-  renderBlogList();
-  renderSinglePost();
-  renderMediaGallery();
-});
+  /**
+   * Build a tag badge element.
+   * @param {string} t
+   */
+  function tagBadge(t) {
+    return `<span class="tag">#${t}</span>`;
+  }
+
+  /**
+   * Get current page filename.
+   */
+  function currentPage() {
+    return location.pathname.split("/").pop() || "index.html";
+  }
+
+  /* ============================================================
+     NAV — active state & hamburger menu
+     ============================================================ */
+  function initNav() {
+    const path = currentPage();
+
+    // Highlight active link (desktop + mobile)
+    document.querySelectorAll("[data-nav]").forEach((a) => {
+      if (a.getAttribute("href") === path) a.classList.add("active");
+    });
+
+    // Hamburger toggle
+    const toggle = document.getElementById("navToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    if (toggle && mobileMenu) {
+      toggle.addEventListener("click", () => {
+        const open = mobileMenu.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+
+      // Close menu when a link is clicked
+      mobileMenu.querySelectorAll("a").forEach((a) => {
+        a.addEventListener("click", () => {
+          mobileMenu.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+  }
+
+  /* ============================================================
+     SCROLL-TO-TOP BUTTON
+     ============================================================ */
+  function initScrollTop() {
+    const btn = document.getElementById("scrollTopBtn");
+    if (!btn) return;
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        btn.classList.toggle("visible", window.scrollY > 400);
+      },
+      { passive: true }
+    );
+
+    btn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  /* ============================================================
+     HOME — latest post card
+     ============================================================ */
+  function renderLatest() {
+    const el = document.getElementById("latest");
+    if (!el) return;
+
+    const posts = getSortedPosts();
+    const latest = posts[0];
+
+    if (!latest) {
+      el.innerHTML = `
+        <div class="card">
+          <div class="emptyState">No logs yet — add your first entry in <b>js/posts.js</b></div>
+        </div>`;
+      return;
+    }
+
+    const tags = (latest.tags || []).map(tagBadge).join(" ");
+
+    el.innerHTML = `
+      <div class="card">
+        <div class="meta">
+          <span>${fmtDate(latest.date)}</span>
+          <span>•</span>
+          <span>Mood: ${latest.mood || "—"}</span>
+          <span>•</span>
+          <span class="readTime">⏱ ${readTime(latest.content || "")}</span>
+        </div>
+
+        <h2 class="h2">${latest.title}</h2>
+        <p class="small" style="margin: 8px 0 0">${latest.summary || ""}</p>
+
+        ${tags ? `<div style="margin-top:12px; display:flex; gap:6px; flex-wrap:wrap;">${tags}</div>` : ""}
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="button" href="post.html?id=${encodeURIComponent(latest.id)}">Read entry →</a>
+          <a class="buttonGhost" href="blog.html">All logs</a>
+        </div>
+      </div>`;
+  }
+
+  /* ============================================================
+     BLOG LIST PAGE
+     ============================================================ */
+  function renderBlogList() {
+    const el = document.getElementById("blogList");
+    if (!el) return;
+
+    const posts = getSortedPosts();
+
+    if (posts.length === 0) {
+      el.innerHTML = `
+        <div class="emptyState">No logs yet — add your first entry in <b>js/posts.js</b></div>`;
+      return;
+    }
+
+    el.innerHTML = posts
+      .map(
+        (p) => `
+      <div class="post-item">
+        <div class="meta">
+          <span>${fmtDate(p.date)}</span>
+          <span>•</span>
+          <span>Mood: ${p.mood || "—"}</span>
+          <span>•</span>
+          <span class="readTime">⏱ ${readTime(p.content || "")}</span>
+        </div>
+
+        <h3><a href="post.html?id=${encodeURIComponent(p.id)}">${p.title}</a></h3>
+        <p class="small" style="margin: 0 0 12px">${p.summary || ""}</p>
+
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          ${(p.tags || []).map(tagBadge).join("")}
+        </div>
+      </div>`
+      )
+      .join("");
+  }
+
+  /* ============================================================
+     SINGLE POST PAGE
+     ============================================================ */
+  function renderSinglePost() {
+    const el = document.getElementById("postView");
+    if (!el) return;
+
+    const params = new URLSearchParams(location.search);
+    const id = params.get("id");
+    const posts = getSortedPosts();
+    const post = id
+      ? (window.POSTS || []).find((p) => p.id === id)
+      : posts[0];
+
+    if (!post) {
+      el.innerHTML = `
+        <div class="card" style="margin-top:16px">
+          <a class="btnBack" href="blog.html">← Back to logs</a>
+          <div class="emptyState">Entry not found.</div>
+        </div>`;
+      return;
+    }
+
+    // Update page title
+    document.title = `Callsign: JENKO — ${post.title}`;
+
+    // Build media section
+    const mediaHtml = (post.featuredMedia || [])
+      .map((m) => {
+        const cap = `<div class="cap"><p class="small" style="margin:0">${m.caption || ""}</p></div>`;
+        return m.type === "video"
+          ? `<div class="media-tile"><video src="${m.src}" controls></video>${cap}</div>`
+          : `<div class="media-tile"><img src="${m.src}" alt="${m.caption || ""}" loading="lazy">${cap}</div>`;
+      })
+      .join("");
+
+    // Previous / next navigation
+    const idx = posts.findIndex((p) => p.id === post.id);
+    const prev = posts[idx + 1];
+    const next = posts[idx - 1];
+
+    const prevNext = `
+      <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-top:8px;">
+        ${prev
+          ? `<a class="buttonGhost" href="post.html?id=${encodeURIComponent(prev.id)}" style="margin-top:0">← ${prev.title}</a>`
+          : "<span></span>"}
+        ${next
+          ? `<a class="buttonGhost" href="post.html?id=${encodeURIComponent(next.id)}" style="margin-top:0">${next.title} →</a>`
+          : ""}
+      </div>`;
+
+    el.innerHTML = `
+      <div class="card" style="margin-top:16px">
+        <a class="btnBack" href="blog.html">← Back to logs</a>
+
+        <div class="meta">
+          <span>${fmtDate(post.date)}</span>
+          <span>•</span>
+          <span>Mood: ${post.mood || "—"}</span>
+          <span>•</span>
+          <span class="readTime">⏱ ${readTime(post.content || "")}</span>
+        </div>
+
+        <h1 class="h1" style="margin-top:10px">${post.title}</h1>
+
+        ${
+          (post.tags || []).length
+            ? `<div style="margin-top:12px; display:flex; gap:6px; flex-wrap:wrap;">${(post.tags || []).map(tagBadge).join("")}</div>`
+            : ""
+        }
+
+        <hr class="sep">
+
+        <div class="postBody">${post.content || ""}</div>
+
+        ${
+          mediaHtml
+            ? `<hr class="sep">
+               <div class="h3" style="margin-bottom:12px">Featured Media</div>
+               <div class="media-grid">${mediaHtml}</div>`
+            : ""
+        }
+
+        <hr class="sep">
+        ${prevNext}
+      </div>`;
+  }
+
+  /* ============================================================
+     MEDIA GALLERY PAGE
+     ============================================================ */
+  function renderMediaGallery() {
+    const el = document.getElementById("mediaGrid");
+    if (!el) return;
+
+    const items = [];
+    getSortedPosts().forEach((p) => {
+      (p.featuredMedia || []).forEach((m) => {
+        items.push({ ...m, postId: p.id, postTitle: p.title, date: p.date });
+      });
+    });
+
+    if (items.length === 0) {
+      el.innerHTML = `
+        <div class="card" style="margin-top:16px">
+          <div class="emptyState">No media yet — add images or videos to your posts in <b>js/posts.js</b></div>
+        </div>`;
+      return;
+    }
+
+    el.innerHTML = items
+      .map((m) => {
+        const postLink = `<a href="post.html?id=${encodeURIComponent(m.postId)}"><b>${m.postTitle}</b></a>`;
+        const cap = m.caption
+          ? `<p style="margin:5px 0 0" class="small">${m.caption}</p>`
+          : "";
+
+        const media =
+          m.type === "video"
+            ? `<video src="${m.src}" controls></video>`
+            : `<img src="${m.src}" alt="${m.caption || ""}" loading="lazy">`;
+
+        return `
+          <div class="media-tile">
+            ${media}
+            <div class="cap">
+              <p class="small" style="margin:0">${fmtDate(m.date)} • ${postLink}</p>
+              ${cap}
+            </div>
+          </div>`;
+      })
+      .join("");
+  }
+
+  /* ============================================================
+     HOME STATS — latest mood, date, post count
+     ============================================================ */
+  function initHomeStats() {
+    const posts = getSortedPosts();
+    if (!posts.length) return;
+
+    const latest = posts[0];
+
+    const moodEl  = document.getElementById("latestMood");
+    const dateEl  = document.getElementById("latestDate");
+    const countEl = document.getElementById("postCount");
+
+    if (moodEl)  moodEl.textContent  = latest.mood || "—";
+    if (dateEl)  dateEl.textContent  = fmtDate(latest.date);
+    if (countEl) countEl.textContent = String(posts.length);
+  }
+
+  /* ============================================================
+     INIT
+     ============================================================ */
+  document.addEventListener("DOMContentLoaded", () => {
+    // Set current year in footer(s)
+    document.querySelectorAll("[data-year]").forEach((el) => {
+      el.textContent = new Date().getFullYear();
+    });
+
+    initNav();
+    initScrollTop();
+    initHomeStats();
+    renderLatest();
+    renderBlogList();
+    renderSinglePost();
+    renderMediaGallery();
+  });
+})();

@@ -1,59 +1,82 @@
-:root{
-  /* Base */
-  --bg:#ffffff;
-  --paper:#ffffff;
-  --paper2:#fbfbfc;
+/* =============================================================
+   CALLSIGN: JENKO — Stylesheet
+   ============================================================= */
 
-  --text:#0f141a;
-  --muted:#566170;
+/* === CSS VARIABLES ========================================== */
+:root {
+  --bg:         #ffffff;
+  --paper:      #ffffff;
+  --paper2:     #f9f9fa;
 
-  /* Accent */
-  --brand:#7a1f2a;
-  --brandDark:#5f1720;
-  --brandSoft:#f3e6e8;
+  --text:       #0f141a;
+  --muted:      #566170;
+  --muted2:     #8492a6;
 
-  /* Structure */
-  --line:#e7ecf2;
-  --line2:#d7dee8;
+  --brand:      #7a1f2a;
+  --brandDark:  #5f1720;
+  --brandSoft:  #f3e6e8;
+  --brandGlow:  rgba(122,31,42,.10);
 
-  --shadow: 0 14px 26px rgba(0,0,0,.06);
-  --shadowSoft: 0 7px 16px rgba(0,0,0,.05);
+  --line:       #e7ecf2;
+  --line2:      #d7dee8;
 
-  --radius: 14px;
-  --max: 1180px;
+  --shadow:     0 14px 26px rgba(0,0,0,.07);
+  --shadowSoft: 0 4px 14px rgba(0,0,0,.05);
+  --shadowUp:   0 20px 40px rgba(0,0,0,.10);
 
-  /* Typography */
-  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --radius:     14px;
+  --max:        1180px;
 
+<<<<<<< Updated upstream
   /* Fixed Nav (full width) */
   --nav-height: 78px; /* menu bar height stays constant */
   --nav-gap: 14px;    /* distance from top of screen */
   --container-pad: 22px;
+=======
+  --font: "Oswald", ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+  --body: ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+
+  --nav-h:      70px;
+  --nav-gap:    14px;
+  --trans:      .18s ease;
+>>>>>>> Stashed changes
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
+/* === RESET & BASE =========================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
 
-body{
-  margin:0;
-  font-family:var(--font);
-  background:#ffffff;
-  color:var(--text);
-  line-height:1.65;
+body {
+  margin: 0;
+  font-family: var(--body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
-.pageWrap{
-  min-height:100vh;
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, h4 { margin: 0; }
+p { margin: 0 0 1em; }
+p:last-child { margin-bottom: 0; }
+img { max-width: 100%; display: block; }
+ul { margin: 0; padding: 0 0 0 1.4em; }
+li { margin-bottom: .35em; }
+
+/* === PAGE WRAPPER — grid background ========================= */
+.pageWrap {
+  min-height: 100vh;
   background:
-    radial-gradient(920px 420px at 12% 0%, rgba(122,31,42,.08), transparent 60%),
-    radial-gradient(900px 420px at 110% 25%, rgba(122,31,42,.06), transparent 55%),
-    linear-gradient(to right, rgba(15,20,26,.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15,20,26,.035) 1px, transparent 1px),
+    radial-gradient(900px 400px at 8% 0%,   rgba(122,31,42,.08), transparent 60%),
+    radial-gradient(800px 380px at 105% 22%, rgba(122,31,42,.06), transparent 55%),
+    linear-gradient(rgba(15,20,26,.032) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,20,26,.032) 1px, transparent 1px),
     #ffffff;
   background-size: auto, auto, 52px 52px, 52px 52px, auto;
 }
 
+<<<<<<< Updated upstream
 a{color:inherit; text-decoration:none}
 a:hover{opacity:.98}
 
@@ -81,99 +104,139 @@ a:hover{opacity:.98}
 
   height: var(--nav-height);
   padding: 0 var(--container-pad);
+=======
+/* === CONTAINER ============================================== */
+.container {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 32px 22px 72px;
+}
 
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:14px;
+/* === HEADER / NAV =========================================== */
+.header {
+  margin-bottom: 12px;
+}
 
+.nav {
+  position: sticky;
+  top: var(--nav-gap);
+  z-index: 999;
+  height: var(--nav-h);
+  padding: 0 18px;
+>>>>>>> Stashed changes
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+<<<<<<< Updated upstream
   border-bottom:1px solid var(--line2);
   background: rgba(255,255,255,.96);
   backdrop-filter: blur(10px);
 
   z-index: 9999;
+=======
+  border: 1px solid var(--line2);
+  background: rgba(255,255,255,.97);
+  border-radius: var(--radius);
+  box-shadow: var(--shadowSoft);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: visible;
+>>>>>>> Stashed changes
 }
 
 /* Brand */
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-weight:950;
-  text-transform:uppercase;
-  letter-spacing:.10em;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: .10em;
+  height: 100%;
 }
 
-.brandText{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
+.brandText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.brandTitle{ font-size:12px; }
+.brandTitle { font-size: 12px; }
 
-.brandSub{
-  font-family:var(--mono);
-  font-size:11px;
-  color:var(--muted);
-  letter-spacing:.12em;
+.brandSub {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: .14em;
 }
 
+<<<<<<< Updated upstream
 /* ✅ Bigger logo, nav height stays constant */
 .logoImg{
   height: 90px;              /* visual size */
+=======
+.logoImg {
+  height: 100px;
+>>>>>>> Stashed changes
   width: auto;
-  display:block;
   object-fit: contain;
   transform: translateY(4px); /* center it nicely */
   flex-shrink: 0;
+<<<<<<< Updated upstream
   filter: drop-shadow(0 3px 6px rgba(0,0,0,.18));
+=======
+  transform: translateY(2px);
 }
 
-/* Nav links */
-.links{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  align-items:center;
+/* Desktop nav links */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+>>>>>>> Stashed changes
 }
 
-.links a{
-  position:relative;
-  padding:10px 14px;
+.links a {
+  position: relative;
+  padding: 9px 14px;
   border-radius: 11px;
-  color:var(--muted);
-  font-weight:900;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-  font-size:12px;
-  border:1px solid transparent;
+  color: var(--muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: 11.5px;
+  border: 1px solid transparent;
+  transition: color var(--trans), background var(--trans), border-color var(--trans);
 }
 
-.links a:hover{
-  color:var(--brand);
-  background:var(--brandSoft);
+.links a:hover {
+  color: var(--brand);
+  background: var(--brandSoft);
   border-color: rgba(122,31,42,.14);
 }
 
-.links a.active{
-  color:var(--brand);
-  background:var(--brandSoft);
+.links a.active {
+  color: var(--brand);
+  background: var(--brandSoft);
   border-color: rgba(122,31,42,.18);
 }
 
-.links a.active::after{
-  content:"";
-  position:absolute;
-  left:14px;
-  right:14px;
-  bottom:7px;
-  height:2px;
-  border-radius:2px;
-  background:var(--brand);
-  opacity:.85;
+.links a.active::after {
+  content: "";
+  position: absolute;
+  left: 14px; right: 14px;
+  bottom: 6px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--brand);
+  opacity: .9;
 }
 
+<<<<<<< Updated upstream
 /* =========================
    TOP STRIP (SCROLLS)
    ========================= */
@@ -184,38 +247,139 @@ a:hover{opacity:.98}
   margin-top: 10px !important;
   margin-bottom:26px;
   padding:14px 18px;
+=======
+/* Hamburger (mobile) */
+.navToggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line2);
+  border-radius: 10px;
+  background: var(--paper2);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
 
+.navToggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform .22s ease, opacity .22s ease;
+}
+>>>>>>> Stashed changes
+
+.navToggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.navToggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.navToggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile drawer */
+.mobileMenu {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  position: sticky;
+  top: calc(var(--nav-gap) + var(--nav-h) + 8px);
+  z-index: 998;
+  padding: 14px;
+  margin-bottom: 10px;
+  background: rgba(255,255,255,.98);
+  border: 1px solid var(--line2);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+}
+
+.mobileMenu.open {
+  display: flex;
+}
+
+.mobileMenu a {
+  padding: 12px 16px;
+  border-radius: 10px;
+  color: var(--muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: 12px;
+  border: 1px solid transparent;
+  transition: color var(--trans), background var(--trans), border-color var(--trans);
+}
+
+.mobileMenu a:hover,
+.mobileMenu a.active {
+  color: var(--brand);
+  background: var(--brandSoft);
+  border-color: rgba(122,31,42,.14);
+}
+
+/* === TOP STRIP ============================================== */
+.topStrip {
+  margin: 14px 0 22px;
+  padding: 13px 18px;
   border-radius: 12px;
+<<<<<<< Updated upstream
   border:1px solid rgba(122,31,42,.16);
   background: rgba(243,230,232,.75);
 
   color:var(--brand);
+=======
+  border: 1px solid rgba(122,31,42,.16);
+  background: rgba(243,230,232,.72);
+  color: var(--brand);
+>>>>>>> Stashed changes
   font-family: var(--mono);
-  font-size:12px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
+  font-size: 11.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-/* =========================
-   PANELS / CARDS
-   ========================= */
-.panel{
+.topStrip::before {
+  content: "▶";
+  font-size: 9px;
+  opacity: .7;
+}
+
+/* === PANELS / CARDS ========================================= */
+.panel {
   background: var(--paper);
-  border:1px solid var(--line2);
+  border: 1px solid var(--line2);
   border-radius: calc(var(--radius) + 6px);
   box-shadow: var(--shadow);
 }
+<<<<<<< Updated upstream
 .panelPad{ padding:26px; }
+=======
 
-.card{
+.panelPad { padding: 28px; }
+>>>>>>> Stashed changes
+
+.card {
   background: var(--paper);
-  border:1px solid var(--line2);
+  border: 1px solid var(--line2);
   border-radius: calc(var(--radius) + 2px);
   box-shadow: var(--shadowSoft);
-  padding:22px;
-  position:relative;
+  padding: 22px;
+  position: relative;
+  transition: transform var(--trans), box-shadow var(--trans), border-color var(--trans);
 }
 
+<<<<<<< Updated upstream
 /* Stripe only on hover */
 .card::before{
   content:"";
@@ -225,47 +389,95 @@ a:hover{opacity:.98}
   bottom:14px;
   width:4px;
   border-radius:999px;
+=======
+.card::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 14px; bottom: 14px;
+  width: 4px;
+  border-radius: 999px;
+>>>>>>> Stashed changes
   background: var(--brand);
-  opacity:0;
+  opacity: 0;
   transform: translateX(-2px);
-  transition: opacity .18s ease, transform .18s ease;
+  transition: opacity var(--trans), transform var(--trans);
 }
+<<<<<<< Updated upstream
 .card:hover::before{
   opacity:.95;
   transform: translateX(0);
+=======
+
+.card:hover::before { opacity: .95; transform: translateX(0); }
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: rgba(122,31,42,.18);
+>>>>>>> Stashed changes
 }
 
-.meta{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  align-items:center;
+/* === TYPOGRAPHY ============================================= */
+.h1 {
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.08;
+  letter-spacing: -.02em;
+  font-weight: 800;
+}
+
+.h2 {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.h3 {
   font-family: var(--mono);
-  font-size:12px;
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--brand);
+  font-weight: 600;
+}
+
+.small {
+  font-size: 14px;
   color: var(--muted);
-  letter-spacing:.08em;
-  text-transform:uppercase;
+  line-height: 1.8;
+}
+
+.meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: .08em;
+  text-transform: uppercase;
   margin-bottom: 10px;
 }
 
-.tag{
-  display:inline-block;
-  padding:6px 10px;
-  border-radius:999px;
+.tag {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 999px;
   background: var(--brandSoft);
   color: var(--brand);
-  font-size:12px;
-  font-weight:950;
-  letter-spacing:.08em;
-  text-transform:uppercase;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  transition: background var(--trans), color var(--trans);
 }
 
-.small{
-  font-size:14px;
-  color:var(--muted);
-  line-height:1.8;
+.tag:hover {
+  background: var(--brand);
+  color: #fff;
 }
 
+<<<<<<< Updated upstream
 hr.sep{
   border:0;
   border-top:1px dashed var(--line2);
@@ -283,13 +495,18 @@ h1,h2,h3{margin:0}
 }
 .h2{ font-size:20px; margin-top:10px; }
 .h3{
+=======
+.kicker {
+>>>>>>> Stashed changes
   font-family: var(--mono);
-  font-size:12px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color: var(--brand);
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
 }
 
+<<<<<<< Updated upstream
 /* =========================
    BUTTONS
    ========================= */
@@ -299,37 +516,87 @@ h1,h2,h3{margin:0}
   gap:8px;
   margin-top:16px;
   padding:12px 16px;
+=======
+hr.sep {
+  border: 0;
+  border-top: 1px dashed var(--line2);
+  margin: 20px 0;
+}
+
+/* === BUTTONS ================================================ */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 11px 18px;
+>>>>>>> Stashed changes
   border-radius: 12px;
   background: var(--brand);
-  color:#fff;
-  font-weight:950;
-  letter-spacing:.10em;
-  text-transform:uppercase;
-  font-size:12px;
-  box-shadow: 0 10px 16px rgba(122,31,42,.16);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  font-size: 11.5px;
+  box-shadow: 0 8px 18px rgba(122,31,42,.20);
+  transition: background var(--trans), transform var(--trans), box-shadow var(--trans);
 }
-.button:hover{ background: var(--brandDark); }
 
-.buttonGhost{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  margin-top:16px;
-  padding:12px 16px;
+.button:hover {
+  background: var(--brandDark);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px rgba(122,31,42,.26);
+  color: #fff;
+}
+
+.buttonGhost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 11px 18px;
   border-radius: 12px;
   background: var(--paper2);
-  border:1px solid var(--line2);
+  border: 1px solid var(--line2);
   color: var(--brand);
-  font-weight:950;
-  letter-spacing:.10em;
-  text-transform:uppercase;
-  font-size:12px;
+  font-weight: 700;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  font-size: 11.5px;
+  transition: background var(--trans), border-color var(--trans), transform var(--trans);
 }
-.buttonGhost:hover{
+
+.buttonGhost:hover {
+  background: var(--brandSoft);
+  border-color: rgba(122,31,42,.22);
+  transform: translateY(-1px);
+  color: var(--brand);
+}
+
+.btnBack {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--line2);
+  background: var(--paper2);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  transition: color var(--trans), background var(--trans), border-color var(--trans);
+}
+
+.btnBack:hover {
+  color: var(--brand);
   background: var(--brandSoft);
   border-color: rgba(122,31,42,.18);
 }
 
+<<<<<<< Updated upstream
 /* =========================
    HOME LAYOUT
    ========================= */
@@ -342,83 +609,84 @@ h1,h2,h3{margin:0}
 
 .heroGrid{
   display:grid;
+=======
+/* === LAYOUT — HOME ========================================== */
+.heroGrid {
+  display: grid;
+>>>>>>> Stashed changes
   grid-template-columns: 1.15fr 0.85fr;
-  gap:20px;
-  align-items:stretch;
+  gap: 22px;
+  align-items: stretch;
 }
 
-.hint{
-  display:inline-flex;
-  gap:10px;
-  align-items:center;
-  padding:12px 14px;
-  border-radius: 12px;
-  border:1px solid var(--line);
-  background: var(--paper2);
-  color: var(--muted);
-  font-size:13px;
-  margin-top: 12px;
+.homeGrid {
+  display: grid;
+  grid-template-columns: 1fr 0.42fr;
+  gap: 22px;
+  margin-top: 22px;
 }
-.hint b{color:var(--text)}
 
+<<<<<<< Updated upstream
 /* Stats */
 .stats{ display:grid; gap:14px; }
 .statCard{
   border:1px solid var(--line2);
   background: linear-gradient(180deg, #fff, #fbfbfc);
+=======
+/* === STAT CARDS ============================================= */
+.stats { display: grid; gap: 14px; }
+
+.statCard {
+  border: 1px solid var(--line2);
+  background: linear-gradient(160deg, #fff, #f9f9fa);
+>>>>>>> Stashed changes
   border-radius: 14px;
-  padding:16px;
+  padding: 16px;
   box-shadow: var(--shadowSoft);
 }
-.statTop{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
+
+.statTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
 }
-.kicker{
-  font-family: var(--mono);
-  font-size:12px;
-  color:var(--muted);
-  font-weight:950;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-}
-.pill{
-  display:inline-flex;
-  align-items:center;
-  padding:6px 10px;
-  border-radius:999px;
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px;
+  border-radius: 999px;
   background: var(--brandSoft);
   color: var(--brand);
-  font-size:12px;
-  font-weight:950;
-  letter-spacing:.10em;
-  text-transform:uppercase;
-}
-.statValue{
-  margin-top:12px;
-  font-weight:950;
-  font-size:18px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .10em;
+  text-transform: uppercase;
 }
 
+<<<<<<< Updated upstream
 /* Sidebar */
 .sideCard{
+=======
+.statValue {
+  margin-top: 12px;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+/* === SIDEBAR ================================================ */
+.sideCard {
+>>>>>>> Stashed changes
   background: var(--paper);
-  border:1px solid var(--line2);
+  border: 1px solid var(--line2);
   border-radius: calc(var(--radius) + 2px);
   box-shadow: var(--shadowSoft);
-  padding:18px;
+  padding: 18px;
 }
-.sideItem{
-  padding:14px;
-  border-radius: 12px;
-  border:1px solid var(--line);
-  background: var(--paper2);
-  margin-bottom:12px;
-}
-.sideItem:last-child{ margin-bottom:0; }
 
+<<<<<<< Updated upstream
 /* =========================
    BLOG LIST
    ========================= */
@@ -427,41 +695,79 @@ h1,h2,h3{margin:0}
 .post-item{
   padding:18px;
   border:1px solid var(--line2);
+=======
+.sideItem {
+  padding: 13px;
+  border-radius: 11px;
+  border: 1px solid var(--line);
+  background: var(--paper2);
+  margin-bottom: 10px;
+  transition: border-color var(--trans), background var(--trans), transform var(--trans);
+}
+
+.sideItem:last-child { margin-bottom: 0; }
+
+.sideItem:hover {
+  background: #fff;
+  border-color: rgba(122,31,42,.16);
+  transform: translateX(3px);
+}
+
+/* === BLOG LIST ============================================== */
+.list { display: grid; gap: 14px; }
+
+.post-item {
+  padding: 18px;
+  border: 1px solid var(--line2);
+>>>>>>> Stashed changes
   border-radius: var(--radius);
   background: var(--paper2);
+  transition: transform var(--trans), box-shadow var(--trans), border-color var(--trans), background var(--trans);
 }
-.post-item h3{
-  margin:0 0 8px;
-  font-size:18px;
-  line-height:1.25;
-}
-.post-item .meta{ margin-bottom:10px; }
 
+<<<<<<< Updated upstream
 /* =========================
    MEDIA
    ========================= */
 .media-grid{
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap:16px;
-  margin-top:18px;
+=======
+.post-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: rgba(122,31,42,.20);
+  background: #fff;
 }
 
+.post-item h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+  line-height: 1.28;
+}
+
+/* === MEDIA GRID ============================================= */
+.media-grid {
+  display: grid;
+>>>>>>> Stashed changes
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+<<<<<<< Updated upstream
 .media-tile{
+=======
+.media-tile {
+>>>>>>> Stashed changes
   border-radius: var(--radius);
-  overflow:hidden;
-  border:1px solid var(--line2);
+  overflow: hidden;
+  border: 1px solid var(--line2);
   background: var(--paper);
   box-shadow: var(--shadowSoft);
+  transition: transform var(--trans), box-shadow var(--trans), border-color var(--trans);
 }
-.media-tile img, .media-tile video{
-  width:100%;
-  height:190px;
-  object-fit:cover;
-  display:block;
-}
-.media-tile .cap{ padding:14px; }
 
+<<<<<<< Updated upstream
 /* =========================
    FOOTER
    ========================= */
@@ -469,11 +775,80 @@ h1,h2,h3{margin:0}
   margin-top:28px;
   border:1px solid var(--line2);
   background: rgba(255,255,255,.92);
-  border-radius: calc(var(--radius) + 6px);
-  box-shadow: var(--shadowSoft);
-  overflow:hidden;
+=======
+.media-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 28px rgba(0,0,0,.09);
+  border-color: rgba(122,31,42,.20);
 }
 
+.media-tile img,
+.media-tile video {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.media-tile .cap { padding: 14px; }
+
+/* === POST CONTENT (rich text inside posts) ================== */
+.postBody {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.postBody h2,
+.postBody h3 {
+  color: var(--text);
+  margin: 1.4em 0 .5em;
+  font-family: var(--body);
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: inherit;
+}
+
+.postBody h2 { font-size: 18px; }
+.postBody h3 { font-size: 15px; color: var(--brand); }
+
+.postBody p { margin: 0 0 .9em; }
+
+.postBody ul,
+.postBody ol {
+  margin: 0 0 .9em;
+  padding-left: 1.4em;
+}
+
+.postBody li { margin-bottom: .35em; }
+
+.postBody strong { color: var(--text); }
+
+/* === READ TIME BADGE ======================================== */
+.readTime {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted2);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+/* === FOOTER ================================================= */
+.siteFooter {
+  margin-top: 32px;
+  border: 1px solid var(--line2);
+  background: rgba(255,255,255,.94);
+>>>>>>> Stashed changes
+  border-radius: calc(var(--radius) + 6px);
+  box-shadow: var(--shadowSoft);
+  overflow: hidden;
+}
+
+<<<<<<< Updated upstream
 .siteFooter::before{
   content:"";
   display:block;
@@ -499,10 +874,38 @@ h1,h2,h3{margin:0}
 .footerLogo{
   width:34px;
   height:34px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--brand), var(--brandDark));
+=======
+.siteFooter::before {
+  content: "";
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand) 0%, rgba(122,31,42,.3) 60%, transparent 100%);
 }
 
+.footerTop {
+  padding: 20px 20px 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.footerBrand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footerLogo {
+  width: 36px;
+  height: 36px;
+>>>>>>> Stashed changes
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--brand), var(--brandDark));
+  flex-shrink: 0;
+}
+
+<<<<<<< Updated upstream
 .footerTitle{
   font-weight:950;
   letter-spacing:.10em;
@@ -529,20 +932,55 @@ h1,h2,h3{margin:0}
   padding:10px 14px;
   border-radius: 12px;
   border:1px solid var(--line);
-  background: var(--paper2);
-  color:var(--muted);
-  font-weight:950;
-  font-size:12px;
-  letter-spacing:.10em;
-  text-transform:uppercase;
+=======
+.footerTitle {
+  font-weight: 800;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  font-size: 11.5px;
 }
 
+.footerDesc {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.5;
+  max-width: 52ch;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.footerLinks a {
+  padding: 9px 14px;
+  border-radius: 11px;
+  border: 1px solid var(--line);
+>>>>>>> Stashed changes
+  background: var(--paper2);
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  transition: background var(--trans), color var(--trans), border-color var(--trans);
+}
+
+<<<<<<< Updated upstream
 .footerLinks a:hover{
+=======
+.footerLinks a:hover {
+>>>>>>> Stashed changes
   background: var(--brandSoft);
   color: var(--brand);
   border-color: rgba(122,31,42,.16);
 }
 
+<<<<<<< Updated upstream
 .footerBottom{
   border-top:1px solid var(--line2);
   padding:14px 18px;
@@ -599,27 +1037,52 @@ h1,h2,h3{margin:0}
 .footerLinks a,
 .links a{
   transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease, background .16s ease, color .16s ease;
+=======
+.footerBottom {
+  border-top: 1px solid var(--line2);
+  padding: 13px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 11.5px;
+  font-family: var(--mono);
+  letter-spacing: .10em;
+  text-transform: uppercase;
 }
 
-.card:hover,
-.post-item:hover,
-.sideItem:hover,
-.media-tile:hover{
-  transform: translateY(-2px);
-  box-shadow: var(--shadow);
-  border-color: rgba(122,31,42,.20);
-}
-.post-item:hover{ background:#ffffff; }
-.media-tile:hover{ box-shadow: 0 16px 28px rgba(0,0,0,.08); }
-
-a:hover{ color: var(--brand); }
-.card a:hover,
-.post-item a:hover,
-.small a:hover{
-  text-decoration: underline;
-  text-underline-offset: 3px;
+.footerBottom .maroon {
+  color: var(--brand);
+  font-weight: 800;
 }
 
+/* === EMPTY STATE ============================================ */
+.emptyState {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+/* === LOADING SKELETON ======================================= */
+.skeleton {
+  background: linear-gradient(90deg, var(--line) 25%, var(--line2) 50%, var(--line) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 6px;
+>>>>>>> Stashed changes
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+<<<<<<< Updated upstream
 /* ===== Remove top gap above fixed nav ===== */
 .nav{
   top: 0 !important;          /* flush with top of screen */
@@ -628,4 +1091,61 @@ a:hover{ color: var(--brand); }
 /* ===== Adjust container so content still clears nav ===== */
 .container{
   padding-top: 96px !important;  /* nav height (78) + breathing room */
+=======
+/* === SCROLL TO TOP ========================================== */
+.scrollTop {
+  position: fixed;
+  bottom: 28px;
+  right: 22px;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  box-shadow: 0 8px 20px rgba(122,31,42,.30);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .22s ease, transform .22s ease;
+  z-index: 900;
+  pointer-events: none;
+}
+
+.scrollTop.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.scrollTop:hover {
+  background: var(--brandDark);
+}
+
+/* === RESPONSIVE ============================================= */
+@media (max-width: 980px) {
+  .container     { padding: 24px 16px 54px; }
+  .heroGrid      { grid-template-columns: 1fr; }
+  .homeGrid      { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .nav           { padding: 0 14px; }
+  .links         { display: none; }
+  .navToggle     { display: flex; }
+  .panelPad      { padding: 20px; }
+  .card          { padding: 18px; }
+  .footerTop     { flex-direction: column; }
+  .footerLinks   { justify-content: flex-start; }
+  .footerBottom  { flex-direction: column; align-items: flex-start; gap: 6px; }
+}
+
+@media (max-width: 480px) {
+  .heroGrid { gap: 16px; }
+  .media-grid { grid-template-columns: 1fr; }
+>>>>>>> Stashed changes
 }

@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="All log entries — Callsign: JENKO" />
   <title>Callsign: JENKO — Logs</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -10,6 +11,7 @@
   <div class="pageWrap">
     <div class="container">
 
+      <!-- ===== NAV ===== -->
       <header class="header">
         <nav class="nav">
           <a class="brand" href="index.html">
@@ -18,48 +20,53 @@
               <span class="brandSub">DAILY LOG // SITREP</span>
             </span>
           </a>
-
           <div class="links">
             <a data-nav href="index.html">Home</a>
             <a data-nav href="blog.html">Logs</a>
             <a data-nav href="media.html">Media</a>
             <a data-nav href="about.html">About</a>
           </div>
+          <button class="navToggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
         </nav>
+        <div class="mobileMenu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+          <a data-nav href="index.html">Home</a>
+          <a data-nav href="blog.html">Logs</a>
+          <a data-nav href="media.html">Media</a>
+          <a data-nav href="about.html">About</a>
+        </div>
       </header>
 
       <div class="topStrip">ARCHIVE // ALL LOG ENTRIES</div>
 
       <section class="panel panelPad">
         <div class="h3">Logbook</div>
-        <h1 class="h1" style="margin-top:10px;">All Logs</h1>
-        <p style="margin-top:10px; color:var(--muted);">
-          High caffeine. Low clarity. Maximum effort.
-        </p>
+        <h1 class="h1" style="margin-top:10px">All Logs</h1>
+        <p style="margin-top:10px; color:var(--muted)">High caffeine. Low clarity. Maximum effort.</p>
       </section>
 
-      <div class="card" style="margin-top:16px;">
+      <div class="card" style="margin-top:16px">
         <div id="blogList" class="list"></div>
       </div>
 
+      <!-- ===== FOOTER ===== -->
       <footer class="siteFooter">
         <div class="footerTop">
           <div class="footerBrand">
-            <img src="images/logo.png" alt="Callsign Jenko logo" class="logoImg">
+            <img src="images/logo.png" alt="Callsign Jenko logo" class="logoImg" style="height:48px">
             <div>
-              <div class="footerDesc">“Multiple objectives. Zero prioritisation. Full send.”</div>
+              <div class="footerDesc">"Multiple objectives. Zero prioritisation. Full send."</div>
             </div>
           </div>
-
           <div class="footerLinks">
             <a href="index.html">Home</a>
             <a href="media.html">Media</a>
             <a href="about.html">About</a>
           </div>
         </div>
-
         <div class="footerBottom">
-          <div>© <span id="year"></span> <span class="maroon">JENKO</span></div>
+          <div>© <span data-year></span> <span class="maroon">JENKO</span></div>
           <div>Built with Chronic Backpain and ADD</div>
         </div>
       </footer>
@@ -67,9 +74,8 @@
     </div>
   </div>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <button class="scrollTop" id="scrollTopBtn" aria-label="Back to top">↑</button>
+
   <script src="js/posts.js"></script>
   <script src="js/app.js"></script>
 </body>

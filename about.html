@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="About Callsign: JENKO — who I am and why this exists." />
   <title>Callsign: JENKO — About</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -10,6 +11,7 @@
   <div class="pageWrap">
     <div class="container">
 
+      <!-- ===== NAV ===== -->
       <header class="header">
         <nav class="nav">
           <a class="brand" href="index.html">
@@ -18,79 +20,113 @@
               <span class="brandSub">DAILY LOG // SITREP</span>
             </span>
           </a>
-
           <div class="links">
             <a data-nav href="index.html">Home</a>
             <a data-nav href="blog.html">Logs</a>
             <a data-nav href="media.html">Media</a>
             <a data-nav href="about.html">About</a>
           </div>
+          <button class="navToggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
         </nav>
+        <div class="mobileMenu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+          <a data-nav href="index.html">Home</a>
+          <a data-nav href="blog.html">Logs</a>
+          <a data-nav href="media.html">Media</a>
+          <a data-nav href="about.html">About</a>
+        </div>
       </header>
 
       <div class="topStrip">ABOUT // PROFILE</div>
 
       <section class="panel panelPad">
         <div class="h3">Identity</div>
-        <h1 class="h1" style="margin-top:10px;">About Me</h1>
-        <p style="margin-top:10px; color:var(--muted);">
-          “Operating beyond safe caffeine limits.”
-        </p>
+        <h1 class="h1" style="margin-top:10px">About Me</h1>
+        <p style="margin-top:10px; color:var(--muted)">"Operating beyond safe caffeine limits."</p>
       </section>
 
-      <div class="card" style="margin-top:16px;">
-        <div class="h3">Bio</div>
+      <div class="card" style="margin-top:16px">
+
+        <div class="h3">Background</div>
         <hr class="sep">
         <p class="small">
-        <p><u>BACKGROUND</u></p>
-        Callsign: JENKO is an ongoing operation built around caffeine, questionable planning, and a refusal to sit still for too long.
-        This site exists as a running log of training, time out bush, days on the road, and whatever side quests manage to derail the original plan.
-
-        Expect inconsistent updates, unnecessary purchases justified as “essential gear,” and occasional moments of clarity between cups of coffee.
-
-        <p><u>MISSION PROFILE</u></p>
-        Primary objectives include staying fit, getting outdoors, putting kilometres on the odometer, and documenting the process without overthinking it.
-        Secondary objectives include testing gear, chasing good campsites, and pretending every weekend has a clear plan before it inevitably changes.
-
-        Mission scope remains flexible. Enthusiasm remains high.
-
-        <p><u>CURRENT STATUS</u></p>
-        Caffeine levels stable.
-        Planning questionable.
-        Momentum acceptable.
-        Mission ongoing.
+          Callsign: JENKO is an ongoing operation built around caffeine, questionable planning, and a refusal
+          to sit still for too long. This site exists as a running log of training, time out bush, days on the
+          road, and whatever side quests manage to derail the original plan.
+        </p>
+        <p class="small">
+          Expect inconsistent updates, unnecessary purchases justified as "essential gear," and occasional
+          moments of clarity between cups of coffee.
         </p>
 
         <hr class="sep">
 
-        <div class="h3">What you’ll find here</div>
-        <ul class="small" style="margin-top:10px;">
-          <li>SITREP updates covering:</li>
-          <li>Training progress and gym routines time out bush and weekend trips</li>
-          <li>4WD outings, gear setups, and lessons learned the hard way general life updates and whatever side quests appear mid-mission</li>
-          <li>This isn’t a guide, a how-to manual, or a highlight reel.</li>
-          <li>It’s just a log of showing up, figuring things out as they happen, and keeping the mission moving forward.</li>
-        </ul>
+        <div class="h3">Mission Profile</div>
+        <hr class="sep">
+        <p class="small">
+          Primary objectives include staying fit, getting outdoors, putting kilometres on the odometer, and
+          documenting the process without overthinking it. Secondary objectives include testing gear, chasing
+          good campsites, and pretending every weekend has a clear plan before it inevitably changes.
+        </p>
+        <p class="small">Mission scope remains flexible. Enthusiasm remains high.</p>
+
+        <hr class="sep">
+
+        <div class="h3">Current Status</div>
+        <hr class="sep">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:10px; margin-top:4px">
+          <div class="sideItem">
+            <div class="kicker">Caffeine</div>
+            <div class="small" style="margin-top:4px">Levels stable.</div>
+          </div>
+          <div class="sideItem">
+            <div class="kicker">Planning</div>
+            <div class="small" style="margin-top:4px">Questionable.</div>
+          </div>
+          <div class="sideItem">
+            <div class="kicker">Momentum</div>
+            <div class="small" style="margin-top:4px">Acceptable.</div>
+          </div>
+          <div class="sideItem">
+            <div class="kicker">Mission</div>
+            <div class="small" style="margin-top:4px">Ongoing.</div>
+          </div>
+        </div>
+
+        <hr class="sep">
+
+        <div class="h3">What you'll find here</div>
+        <hr class="sep">
+        <p class="small">
+          SITREP updates covering training progress, gym routines, time out bush and weekend trips, 4WD
+          outings, gear setups, lessons learned the hard way, and general life updates — plus whatever side
+          quests appear mid-mission.
+        </p>
+        <p class="small">
+          This isn't a guide, a how-to manual, or a highlight reel. It's just a log of showing up, figuring
+          things out as they happen, and keeping the mission moving forward.
+        </p>
+
       </div>
 
+      <!-- ===== FOOTER ===== -->
       <footer class="siteFooter">
         <div class="footerTop">
           <div class="footerBrand">
-            <img src="images/logo.png" alt="Callsign Jenko logo" class="logoImg">
+            <img src="images/logo.png" alt="Callsign Jenko logo" class="logoImg" style="height:48px">
             <div>
-              <div class="footerDesc">“Side quests accepted mid-mission.”</div>
+              <div class="footerDesc">"Side quests accepted mid-mission."</div>
             </div>
           </div>
-
           <div class="footerLinks">
             <a href="blog.html">Logs</a>
             <a href="media.html">Media</a>
             <a href="index.html">Home</a>
           </div>
         </div>
-
         <div class="footerBottom">
-          <div>© <span id="year"></span> <span class="maroon">JENKO</span></div>
+          <div>© <span data-year></span> <span class="maroon">JENKO</span></div>
           <div>Built by Suicide Jokes and Jadedness</div>
         </div>
       </footer>
@@ -98,9 +134,8 @@
     </div>
   </div>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <button class="scrollTop" id="scrollTopBtn" aria-label="Back to top">↑</button>
+
   <script src="js/app.js"></script>
 </body>
 </html>
