@@ -1325,3 +1325,29 @@ hr.sep {
   color: var(--muted2);
   letter-spacing: .10em;
 }
+
+/* =============================================================
+   ABOUT PAGE — LOGO
+   ============================================================= */
+.aboutLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.aboutLogo img {
+  height: 180px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 8px 24px rgba(122,31,42,.18));
+}
+
+@media (max-width: 600px) {
+  .aboutLogo img { height: 110px; }
+}
+
+@media (max-width: 400px) {
+  .aboutLogo { display: none; }
+}
