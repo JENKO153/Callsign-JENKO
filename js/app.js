@@ -299,29 +299,42 @@
   function renderLatest() {
     const el = document.getElementById("latest");
     if (!el) return;
-    const posts  = getSortedPosts();
-    const latest = posts[0];
-    if (!latest) {
+    const posts = getSortedPosts();
+
+    if (!posts.length) {
       el.innerHTML = `<div class="card"><div class="emptyState">No logs yet — add your first entry in <b>js/posts.js</b></div></div>`;
       return;
     }
-    const tags = (latest.tags || []).map(tagBadge).join(" ");
+
+    const recent = posts.slice(0, 2);
+
+    const cardHtml = (p, isFirst) => {
+      const tags = (p.tags || []).map(tagBadge).join(" ");
+      return `
+        <div class="card recentCard">
+          ${isFirst ? `<div class="recentBadge">Latest</div>` : ""}
+          <div class="meta">
+            <span>${fmtDate(p.date)}</span>
+            <span>•</span>
+            <span>Mood: ${p.mood || "—"}</span>
+            <span>•</span>
+            <span class="readTime">⏱ ${readTime(p.content || "")}</span>
+          </div>
+          <h2 class="h2">${p.title}</h2>
+          <p class="small" style="margin:8px 0 0">${p.summary || ""}</p>
+          ${tags ? `<div style="margin-top:12px; display:flex; gap:6px; flex-wrap:wrap;">${tags}</div>` : ""}
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="button" href="post.html?id=${encodeURIComponent(p.id)}">Read entry →</a>
+          </div>
+        </div>`;
+    };
+
     el.innerHTML = `
-      <div class="card">
-        <div class="meta">
-          <span>${fmtDate(latest.date)}</span>
-          <span>•</span>
-          <span>Mood: ${latest.mood || "—"}</span>
-          <span>•</span>
-          <span class="readTime">⏱ ${readTime(latest.content || "")}</span>
-        </div>
-        <h2 class="h2">${latest.title}</h2>
-        <p class="small" style="margin:8px 0 0">${latest.summary || ""}</p>
-        ${tags ? `<div style="margin-top:12px; display:flex; gap:6px; flex-wrap:wrap;">${tags}</div>` : ""}
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <a class="button" href="post.html?id=${encodeURIComponent(latest.id)}">Read entry →</a>
-          <a class="buttonGhost" href="blog.html">All logs</a>
-        </div>
+      <div class="recentGrid">
+        ${recent.map((p, i) => cardHtml(p, i === 0)).join("")}
+      </div>
+      <div style="margin-top:12px; text-align:right;">
+        <a class="buttonGhost" href="blog.html" style="margin-top:0">View all logs →</a>
       </div>`;
   }
 
